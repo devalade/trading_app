@@ -8,7 +8,13 @@ const getAllNews = (req, res, next) => {
         .catch(next);
 }
 
-const getNewsById = (req, res, next) =>{
+const apiGetAllNews = (req, res, next) => {
+    NewsService.getAll()
+        .then(news => res.json(news))
+        .catch(next);
+}
+
+const apiGetNewsById = (req, res, next) =>{
     NewsService.getById(req.params.id)
         .then(news => res.json(news))
         .catch(next);

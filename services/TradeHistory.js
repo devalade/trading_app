@@ -17,9 +17,11 @@ async function getTradeHistoryById(id) {
     return tradeHistory;
 }
 
+
 async function getAllTradeHistory() {
     return await TradeHistoryModels.findAll();
 }
+
 
 async function insertTradeHistory(params) {
     console.log(params);
