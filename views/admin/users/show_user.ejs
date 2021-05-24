@@ -1,0 +1,221 @@
+<%- include('../layouts/header'); -%> 
+
+	<div class="content-wrapper">
+<%- include('../layouts/left_sidebar'); -%> 
+<main class="main-wrapper clearfix">
+    <!-- Page Title Area -->
+    <div class="row page-title clearfix">
+        <div class="page-title-left">
+            <h6 class="page-title-heading mr-0 mr-r-5">User Profile</h6>
+            <p class="page-title-description mr-0 d-none d-md-inline-block">statistics, charts and events</p>
+        </div>
+        <!-- /.page-title-left -->
+        <div class="page-title-right d-none d-sm-inline-flex">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Dashboard</a>
+                </li>
+                <li class="breadcrumb-item active">User Profile</li>
+            </ol>
+        </div>
+        <!-- /.page-title-right -->
+    </div>
+    <div class="widget-list">
+        <div class="row">
+            <!-- User Summary -->
+            <div class="col-12 col-md-4 widget-holder widget-full-content">
+                <div class="widget-bg">
+                    <div class="widget-body clearfix">
+                        <div class="widget-user-profile">
+                            <figure class="profile-wall-img">
+                                <img src="/demo/user-widget-bg.jpeg" alt="User Wall">
+                            </figure>
+                            <div class="profile-body">
+                                <figure class="profile-user-avatar thumb-md">
+                                    <img src="/demo/users/user1.jpg" alt="User Wall">
+                                </figure>
+                                <h6 class="h3 profile-user-name">Scott Adams</h6><small class="profile-user-address">Los Angeles, California</small>
+                                <hr class="profile-seperator">
+                                <!-- /.profile-user-description -->
+                                <div class="mb-5"><a href="page-profile.html" class="btn btn-outline-warning btn-rounded btn-lg px-5 border-thick text-uppercase mr-2 mr-0-rtl ml-2-rtl fw-700 fs-11 heading-font-family">Modify</a>  <a href="#"
+                                    class="btn btn-danger btn-circle btn-md fs-18"><i class="material-icons">delete</i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.widget-user-profile -->
+                    </div>
+                    <!-- /.widget-body -->
+                </div>
+                <!-- /.widget-bg -->
+            </div>
+            <!-- /.widget-holder -->
+            <!-- Tabs Content -->
+            <div class="col-12 col-md-8 mr-b-30">
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="profile-tab-bordered-1">
+                        <div class="contact-details-profile">
+                            <h5 class="mr-b-20">Personal Profile</h5>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="contact-details-cell">
+                                        <small class="heading-font-family fw-500">User Name</small>  
+                                        <span><%= user.user_name %></span>
+                                    </div>
+                                    <!-- /.contact-details-cell -->
+                                </div>
+                                <!-- /.col-md-6 -->
+                                <div class="col-md-6">
+                                    <div class="contact-details-cell">
+                                        <small class="heading-font-family fw-500">Email Address</small>  
+                                        <span><%= user.user_email %></span>
+                                    </div>
+                                </div>
+                                <!-- /.col-md-6 -->
+                                <div class="col-md-6">
+                                    <div class="contact-details-cell">
+                                        <small class="heading-font-family fw-500">Mobile</small>  
+                                        <span><%= user.user_mobile %></span>
+                                    </div>
+                                </div>
+                                <!-- /.col-md-6 -->
+                                <!-- <div class="col-md-6">
+                                    <div class="contact-details-cell"><small class="heading-font-family fw-500">ID</small>  <span>34</span>
+                                    </div>
+                                </div> -->
+                            </div>
+                            <!-- /.row -->
+                            <hr>
+                            <h5 class="mr-b-20">Additional Information</h5>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="contact-details-cell">
+                                        <small class="heading-font-family fw-500">Date of Birth</small>
+                                    <span><%= new Date(user.user_dob).toDateString() %></span>
+                                    </div>
+                                    <!-- /.contact-details-cell -->
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="contact-details-cell">
+                                        <small class="heading-font-family fw-500">Gender</small>
+                                        <span><%= user.user_gender %></span>
+                                    </div>
+                                    <!-- /.contact-details-cell -->
+                                </div>
+                                <!-- /.col-md-6 -->
+                                <div class="col-md-6">
+                                    <div class="contact-details-cell">
+                                        <small class="heading-font-family fw-500">Country</small>
+                                          <span><%= user.user_country %></span>
+                                    </div>
+                                    <!-- /.contact-details-cell -->
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="contact-details-cell">
+                                        <small class="heading-font-family fw-500">City</small>  
+                                        <span><%= user.user_city %></span>
+                                    </div>
+                                    <!-- /.contact-details-cell -->
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="contact-details-cell">
+                                        <small class="heading-font-family fw-500">Address</small>  
+                                        <span><%= user.user_address %></span>
+                                    </div>
+                                    <!-- /.contact-details-cell -->
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="contact-details-cell">
+                                        <small class="heading-font-family fw-500">Postal Code</small>  
+                                        <span><%= user.user_postal_code %></span>
+                                    </div>
+                                    <!-- /.contact-details-cell -->
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="contact-details-cell">
+                                        <small class="heading-font-family fw-500">Login Type</small>
+                                        <span>Facebook</span>
+                                    </div>
+                                    <!-- /.contact-details-cell -->
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="contact-details-cell">
+                                        <small class="heading-font-family fw-500">User Type</small>
+                                        <span><%= user.user_type %></span>
+                                    </div>
+                                    <!-- /.contact-details-cell -->
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="contact-details-cell">
+                                        <small class="heading-font-family fw-500">Social ID</small>
+                                        <span><%= user.social_id %></span>
+                                    </div>
+                                    <!-- /.contact-details-cell -->
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="contact-details-cell">
+                                        <small class="heading-font-family fw-500">User Currency</small>
+                                        <span><%= user.user_currency %></span>
+                                    </div>
+                                    <!-- /.contact-details-cell -->
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="contact-details-cell">
+                                        <small class="heading-font-family fw-500">Wallet</small>
+                                        <span><%= user.user_wallet %></span>
+                                    </div>
+                                    <!-- /.contact-details-cell -->
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="contact-details-cell">
+                                        <small class="heading-font-family fw-500">Bonus</small>
+                                        <span><%= user.user_bonus %></span>
+                                    </div>
+                                    <!-- /.contact-details-cell -->
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="contact-details-cell">
+                                        <small class="heading-font-family fw-500">Sounds</small>
+                                        <span><%= user.sounds %></span>
+                                    </div>
+                                    <!-- /.contact-details-cell -->
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="contact-details-cell">
+                                        <small class="heading-font-family fw-500">Deal Dialog</small>
+                                        <span><%= user.deal_result_dialog %></span>
+                                    </div>
+                                    <!-- /.contact-details-cell -->
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="contact-details-cell">
+                                        <small class="heading-font-family fw-500">Joining Date</small>
+                                        <span><%=  new Date(user.createdAt).toDateString() %> %></span>
+                                    </div>
+                                    <!-- /.contact-details-cell -->
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="contact-details-cell">
+                                        <small class="heading-font-family fw-500">Kyc Status</small>
+                                        <span><%= user.Kyc_id %></span>
+                                    </div>
+                                    <!-- /.contact-details-cell -->
+                                </div>
+                                <!-- /.col-md-12 -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
+            </div>
+            <!-- /.col-sm-8 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.widget-list -->
+</main>
+        <%- include('../layouts/right_sidebar'); -%> 
+		
+	<!-- /.content-wrapper -->
+<%- include('../layouts/footer'); -%> 

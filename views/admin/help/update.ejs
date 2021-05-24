@@ -1,0 +1,94 @@
+<%- include('../layouts/header'); -%> 
+
+	<div class="content-wrapper">
+<%- include('../layouts/left_sidebar'); -%> 
+		<main class="main-wrapper clearfix">
+			<!-- Page Title Area -->
+			<div class="row page-title clearfix">
+				<div class="page-title-left">
+					<h6 class="page-title-heading mr-0 mr-r-5">Help Form</h6>
+				</div>
+				<!-- /.page-title-left -->
+				<div class="page-title-right d-none d-sm-inline-flex">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="index.html">Dashboard</a>
+						</li>
+						<li class="breadcrumb-item active">Create Help</li>
+					</ol>
+				</div>
+				<!-- /.page-title-right -->
+			</div>
+			<!-- /.page-title -->
+			<!-- =================================== -->
+			<!-- Different data widgets ============ -->
+			<!-- =================================== -->
+			<div class="widget-list">
+				<div class="row">
+					<div class="col-md-12 widget-holder">
+						<div class="widget-bg">
+							<div class="widget-body clearfix">
+
+								<form action="/api/help/update/<%= help.id %>" method="POST">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label" for="l7">Language</label>
+                                        <div class="col-md-4">
+                                            <div class="form-input-icon form-input-icon-right"><i class="material-icons list-icon">translate</i> 
+                                                <input value="<%= help.help_language %>" name="help_labguage" class="form-control" id="l7" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label" for="l7">Country Flag Url</label>
+                                        <div class="col-md-4">
+                                            <input value="<%= help.help_country_flag %>" name="help_country_flag" class="form-control" id="l7" type="text"/>
+                                        </div>
+                                    </div>
+									<div class="form-group row">
+										<label class="col-md-3 col-form-label" for="l15">Description</label>
+										<div class="col-md-9">
+											<textarea name="help_description" class="form-control" id="l15" rows="3"><%= help.help_description %></textarea>
+										</div>
+									</div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label" for="l2">Phone</label>
+                                        <div class="col-md-6">
+                                            <div class="input-group"><span class="input-group-addon"><i class="material-icons list-icon">call</i> </span>
+                                                <input value="<%= help.help_phone %>" name="help_phone" class="form-control" id="l2" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label" for="l2">Email Address</label>
+                                        <div class="col-md-6">
+                                            <div class="input-group"><span class="input-group-addon"><i class="material-icons list-icon">mail_outline</i> </span>
+                                                <input value="<%= help.help_email %>" name="help_email" class="form-control" id="l2" type="email">
+                                            </div>
+                                        </div>
+                                    </div>
+									<div class="form-group row">
+										<label class="col-md-3 col-form-label" for="l15">Is active</label>
+										<div class="col-md-9">
+											<input <%=help.is_active == 1 ? 'checked' : '' %> name="is_active" type="checkbox"  class="js-switch" data-color="#e91e63">
+										</div>
+									</div>
+									<div class="form-actions">
+										<div class="form-group row">
+											<div class="col-md-9 ml-md-auto btn-list">
+												<button class="btn btn-primary btn-rounded" type="submit">Submit</button>
+												<a href="/api/help"><button class="btn btn-outline-default btn-rounded" type="button">Cancel</button></a>
+												
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<!-- /.main-wrappper -->
+<%- include('../layouts/right_sidebar'); -%> 
+		
+	<!-- /.content-wrapper -->
+<%- include('../layouts/footer'); -%> 

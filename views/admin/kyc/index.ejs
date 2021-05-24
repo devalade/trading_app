@@ -1,0 +1,72 @@
+<%- include('../layouts/header'); -%> 
+	<div class="content-wrapper">
+<%- include('../layouts/left_sidebar'); -%> 
+<main class="main-wrapper clearfix">
+<!-- Page Title Area -->
+<div class="row page-title clearfix">
+	<div class="page-title-left">
+		<h6 class="page-title-heading mr-0 mr-r-5">KYC List</h6>
+	</div>
+	<!-- /.page-title-left -->
+	<div class="page-title-right d-none d-sm-inline-flex">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="index.html">Dashboard</a>
+			</li>
+			<li class="breadcrumb-item active">KYC List</li>
+		</ol>
+	</div>
+	<!-- /.page-title-right -->
+</div>
+<!-- /.page-title -->
+<!-- =================================== -->
+<!-- Different data widgets ============ -->
+<!-- =================================== -->
+<div class="widget-list">
+	<div class="row">
+		<div class="col-md-12 widget-holder">
+			<div class="widget-bg">
+				<div class="widget-body clearfix">
+					<table class="table table-bordered table-responsive" data-toggle="datatables">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>KYC Status</th>
+								<th>User
+								<!-- Ici comme il s'agit d'une association, ce champ sera un lien vers l'user en question --></th>
+								<th>Created Date</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+
+							<% i =1; kyc.forEach(k => { %>
+							<tr>
+								<td><%= i %> </td>
+								<td><span class="btn btn-success"><%= k.kyc_doc %> </span></td>
+								<td><a class="text-underline text-secondary" href="dashboard/show/user/14" title="Profile de Albertino"><%= k.kyc_status == 1 ? 'Verified' : kyc.kyc_status == 2 ? 'Pending' : 'Cancel' %> </a></td>
+								<td><%= new Date(k.cretedAt).toDateString() %> </td>
+								<td>
+									<a href="/api/kyc/update/<%= k.id %> " class="color-content">
+										<i class="material-icons md-18">update</i>
+									</a>
+									<a href="/api/kyc/delete/<%= k.id %> " title="Delete" class="color-content">
+										<i class="material-icons md-18">delete</i>
+									</a>
+								</td>
+							</tr>
+							<% i++; }) %>
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /.row -->
+</div>
+<!-- /.widget-list -->
+</main>
+<%- include('../layouts/right_sidebar'); -%> 
+		
+	<!-- /.content-wrapper -->
+<%- include('../layouts/footer'); -%> 

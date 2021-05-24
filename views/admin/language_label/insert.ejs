@@ -1,0 +1,81 @@
+<%- include('../layouts/header'); -%> 
+	<div class="content-wrapper">
+<%- include('../layouts/left_sidebar'); -%> 
+<main class="main-wrapper clearfix">
+	<!-- Page Title Area -->
+	<div class="row page-title clearfix">
+		<div class="page-title-left">
+			<h6 class="page-title-heading mr-0 mr-r-5">Deposit Form</h6>
+		</div>
+		<!-- /.page-title-left -->
+		<div class="page-title-right d-none d-sm-inline-flex">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="#">Dashboard</a>
+				</li>
+				<li class="breadcrumb-item active">Create Deposit</li>
+			</ol>
+		</div>
+		<!-- /.page-title-right -->
+	</div>
+	<!-- /.page-title -->
+	<!-- =================================== -->
+	<!-- Different data widgets ============ -->
+	<!-- =================================== -->
+	<div class="widget-list">
+		<div class="row">
+			<div class="col-md-12 widget-holder">
+				<div class="widget-bg">
+					<div class="widget-body clearfix">
+						<form>
+							<div class="form-group row">
+								<label class="col-md-3 col-form-label" for="l0">ID</label>
+								<div class="col-md-1">
+									<input class="form-control" id="l0" type="number">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-md-3 col-form-label" for="sample1UserName">Deposit Price</label>
+								<div class="input-group col-md-4">
+									<div class="input-group-addon"><i class="material-icons">attach_money</i></div>
+									<input type="number" class="form-control" id="sample1UserName" placeholder="DOLLAR">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-md-3 col-form-label" for="l2">Deposit Price</label>
+								<div class="col-md-4">
+									<input class="form-control" id="l2" type="number" placeholder="INR">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-md-3 col-form-label" for="l7">Bonus Percentage (%)</label>
+								<div class="col-md-4">
+									<input class="form-control" id="l7" type="number">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-md-3 col-form-label" for="l15">Is active</label>
+								<div class="col-md-9">
+									<input type="checkbox" checked="checked" class="js-switch" data-color="#e91e63">
+								</div>
+							</div>
+							<div class="form-actions">
+								<div class="form-group row">
+									<div class="col-md-9 ml-md-auto btn-list">
+										<button class="btn btn-primary btn-rounded" type="button">Submit</button>
+										<button class="btn btn-outline-default btn-rounded" type="button">Cancel</button>
+										<button class="btn btn-secondary btn-rounded" type="button">Retourner à la liste</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+
+<%- include('../layouts/right_sidebar'); -%> 
+		
+	<!-- /.content-wrapper -->
+<%- include('../layouts/footer'); -%> 

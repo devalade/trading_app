@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+	<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon.png">
+	<link rel="stylesheet" href="/css/pace.css">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<title>Chart</title>
+	<!-- CSS -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600%7CRoboto:400" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="/vendors/mono-social-icons/monosocialiconsfont.css" rel="stylesheet" type="text/css">
+	<link href="/vendors/feather-icons/feather.css" rel="stylesheet" type="text/css">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.7.0/css/perfect-scrollbar.min.css" rel="stylesheet" type="text/css">
+	<link href="/css/style.css" rel="stylesheet" type="text/css">
+
+	<!-- Head Libs -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+	<script data-pace-options='{ "ajax": false, "selectors": [ "img" ]}' src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+	<style>
+		.right-sideba{
+            position: relative;
+			float: right;
+			right: 14.0625rem;
+            width: 14.0625rem;
+            -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+            padding: 1.07143em;
+            border-color: rgba(255, 255, 255, 0.2);
+			z-index: 9;
+		}
+		.floating {
+            position : absolute;
+            z-index: 8;
+		}
+		.floating-bottom {
+			bottom: 5%;
+			left: 5%;
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-end;
+		}
+		.floating-button {
+			background-color: #25313f;
+			padding: 8px;
+			margin-bottom: 10px;
+			border-radius: 8%;
+            width: 40px;
+			height: 40px;
+            opacity: .8;
+			color: #fff;
+            cursor: pointer;
+        }
+		.floating-button i {
+            margin: auto;
+		}
+		.main-wrapper {
+			padding: 0;
+		}
+        .floating-top {
+            top: 1%;
+            right: calc(14.0625rem + 15px);
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+        }
+		.floating-top-button{
+            margin: 5px;
+            align-items: center;
+            padding: 10px;
+			width: 100px;
+            height: 38px;
+            border-radius: 3px;
+            background-color: #25313f;
+            box-shadow: 0 2px 2px #000829;
+            color: #fff;
+            font-size: 15px;
+            opacity: .8;
+            cursor: pointer;
+            transition: opacity .15s;
+		}
+	</style>
+</head>
+
+<body class="sidebar-dark sidebar-collapse content-dark navbar-brand-dark right-sidebar-dark right-sidebar-expand">
+
+	<div id="wrapper" class="wrapper">
+		<aside class="site-sidebar scrollbar-enabled" style="top: 0">
+			<!-- Sidebar Menu -->
+			<nav class="sidebar-nav">
+				<ul class="nav in side-menu">
+					<li class="current-page menu-item-has-children">
+						<a href="#"><i class="list-icon material-icons">person</i><span class="hide-menu">Users</span></a>
+						<ul class="list-unstyled sub-menu">
+							<li><a href="#">List of users</a></li>
+							<li class=""><a href="#">Create new user</a></li>
+						</ul>
+					</li>
+					<li class="current-page menu-item-has-children">
+						<a href="#"><i class="list-icon material-icons">question_answer</i><span class="hide-menu">FAQ</span></a>
+						<ul class="list-unstyled sub-menu">
+							<li><a href="#">FAQ List</a></li>
+							<li><a href="#">Create new FAQ</a></li>
+						</ul>
+					</li>
+					<li class="current-page menu-item-has-children">
+						<a href="#"><i class="list-icon material-icons">help_outline</i><span class="hide-menu">Help</span></a>
+						<ul class="list-unstyled sub-menu">
+							<li><a href="#">Help List</a></li>
+							<li><a href="#">Create new Help</a></li>
+						</ul>
+					</li>
+					<li class=" current-page menu-item-has-children">
+						<a href="#"><i class="list-icon material-icons">add_shopping_cart</i><span class="hide-menu">Deposits</span></a>
+						<ul class="list-unstyled sub-menu">
+							<li class=""><a href="#">List of deposit</a></li>
+							<li class=""><a href="#">Create new deposit</a></li>
+						</ul>
+					</li>
+					<li class="current-page menu-item-has-children">
+						<a href="#"><i class="list-icon material-icons">local_library</i><span class="hide-menu">Education</span></a>
+						<ul class="list-unstyled sub-menu">
+							<li class=""><a href="#">Education List</a></li>
+							<li class=""><a href="#">Create new Education</a></li>
+						</ul>
+					</li>
+					<li class="current-page menu-item-has-children">
+						<a href="#"><i class="list-icon feather feather-command"></i><span class="hide-menu">KYC</span></a>
+						<ul class="list-unstyled sub-menu">
+							<li class=""><a href="#">KYC List</a></li>
+							<li class=""><a href="#">Create new KYC</a></li>
+						</ul>
+					</li>
+					<li class="current-page menu-item-has-children">
+						<a href="#"><i class="list-icon material-icons">translate</i><span class="hide-menu">Language</span></a>
+						<ul class="list-unstyled sub-menu">
+							<li class=""><a href="#">Language List</a></li>
+							<li class=""><a href="#">Create new Language</a></li>
+						</ul>
+					</li>
+					<li class="current-page menu-item-has-children">
+						<a href="#"><i class="list-icon material-icons">label</i><span class="hide-menu">Language Label</span></a>
+						<ul class="list-unstyled sub-menu">
+							<li class=""><a href="#">Language Label List</a></li>
+							<li class=""><a href="#">Create new Language Label</a></li>
+						</ul>
+					</li>
+				</ul>
+				<!-- /.side-menu -->
+			</nav>
+			<!-- /.sidebar-nav -->
+		</aside>
+
+		<aside class="right-sideba">
+
+			<div class="sidebar-chat mt-4">
+				<div class="row">
+					<a href="#" class="m-auto w-100 btn font-weight-bold btn-danger">Open Real account</a>
+				</div>
+				<hr>
+				<div class="row">
+					<a href="#" class="m-auto w-100 btn font-weight-bold btn-outline-success">Add fund</a>
+				</div>
+				<hr>
+				<div class="row">
+					Balance : <span class="text-primary h1">10000 $</span>
+				</div>
+				<div class="row justify-content-around">
+					<button id="sell" class="btn btn-danger w-5/12 h3 text-center ">SELL</button>
+					<button id="buy" class="btn btn-success w-5/12 h3 text-center ">BUY</button>
+				</div>
+			</div>
+		</aside>
+
+		<main class="main-wrapper clearfix" style="margin-left: 1.75rem">
+			<div id="tv-chart" class="relative"></div>
+			<div class="floating floating-top">
+				<div class="floating-top-button"><span class="material-icons">attach_money</span>&nbsp;USD</div>
+				<div class="floating-top-button"><span class="material-icons">euro</span>&nbsp;EUR</div>
+				<div class="floating-top-button"><span class="material-icons">attach_money</span>&nbsp;USD</div>
+				<div class="floating-top-button"><span class="material-icons">attach_money</span>&nbsp;USD</div>
+			</div>
+			<div class="floating floating-bottom">
+				<div class="floating-button"><i class="material-icons">zoom_in</i></div>
+				<div class="floating-button"><i class="material-icons">zoom_out</i></div>
+				<div class="floating-button"><i class="material-icons">mode_standby</i></div>
+				<div class="floating-button"><i class="material-icons">area_chart</i></div>
+				<div class="floating-button"><i class="material-icons">stacked_line_chart</i></div>
+			</div>
+		</main>
+
+	</div>
+
+    
+<!-- SOcket io CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.min.js" integrity="sha512-eVL5Lb9al9FzgR63gDs1MxcDS2wFu3loYAgjIH0+Hg38tCS8Ag62dwKyH+wzDb+QauDpEZjXbMn11blw8cbTJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+
+	<script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js" defer></script>
+	
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.2/umd/popper.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/2.7.0/metisMenu.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.7.0/js/perfect-scrollbar.jquery.js"></script>
+	<!-- <script src="/js/theme.js"></script>
+	<script src="/js/custom.js"></script> -->
+    <script type="module" src="/js/main.js" defer></script>
+</body>
+
+</html>

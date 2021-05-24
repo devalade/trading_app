@@ -1,0 +1,63 @@
+<%- include('../layouts/header'); -%> 
+	<div class="content-wrapper">
+<%- include('../layouts/left_sidebar'); -%> 
+<main class="main-wrapper clearfix">
+	<!-- Page Title Area -->
+	<div class="row page-title clearfix">
+		<div class="page-title-left">
+			<h6 class="page-title-heading mr-0 mr-r-5">KYC Form</h6>
+		</div>
+		<!-- /.page-title-left -->
+		<div class="page-title-right d-none d-sm-inline-flex">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="index.html">Dashboard</a>
+				</li>
+				<li class="breadcrumb-item active">Create KYC</li>
+			</ol>
+		</div>
+		<!-- /.page-title-right -->
+	</div>
+	<!-- /.page-title -->
+	<!-- =================================== -->
+	<!-- Different data widgets ============ -->
+	<!-- =================================== -->
+	<div class="widget-list">
+		<div class="row">
+			<div class="col-md-12 widget-holder">
+				<div class="widget-bg">
+					<div class="widget-body clearfix">
+						<form action="">
+							<div class="form-group row">
+								<label class="col-md-3 col-form-label" for="l7">Language Name</label>
+								<div class="col-md-3">
+									<input name="lang_name" value="<%= language.lang_name %> " class="form-control" id="l7" type="text">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-md-3 col-form-label" for="l15">Is active</label>
+								<div class="col-md-9">
+									<input name="is_active" type="checkbox" <%= language.is_active == 1? 'checked' : '' %>  class="js-switch" data-color="#e91e63">
+								</div>
+							</div>
+							<div class="form-actions">
+								<div class="form-group row">
+									<div class="col-md-9 ml-md-auto btn-list">
+										<button class="btn btn-primary btn-rounded" type="submit">Insert</button>
+										<a href="/api/language">
+											<button class="btn btn-danger btn-rounded" type="button">Cancel</button>
+										</a>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+
+<%- include('../layouts/right_sidebar'); -%> 
+		
+	<!-- /.content-wrapper -->
+<%- include('../layouts/footer'); -%> 

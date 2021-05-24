@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+	<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon.png">
+	<link rel="stylesheet" href="/css/pace.css">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<title>FAQ Lists</title>
+	<!-- CSS -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600%7CRoboto:400" rel="stylesheet" type="text/css">
+	<link href="/vendors/material-icons/material-icons.css" rel="stylesheet" type="text/css">
+	<link href="/vendors/mono-social-icons/monosocialiconsfont.css" rel="stylesheet" type="text/css">
+	<link href="/vendors/feather-icons/feather.css" rel="stylesheet" type="text/css">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.7.0/css/perfect-scrollbar.min.css" rel="stylesheet" type="text/css">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+	<link href="/css/style.css" rel="stylesheet" type="text/css">
+	<!-- Head Libs -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+	<script data-pace-options='{ "ajax": false, "selectors": [ "img" ]}' src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+</head>
+
+<body class="sidebar-dark sidebar-expand content-dark navbar-brand-dark right-sidebar-dark">
+	<div id="wrapper" class="wrapper">
+		<!-- HEADER & TOP NAVIGATION -->
+		<nav class="navbar">
+			<!-- Logo Area -->
+			<div class="navbar-header">
+				<a href="index.html" class="navbar-brand">
+					<img class="logo-expand" alt="" src="/img/logo-dark.png">
+					<img class="logo-collapse" alt="" src="/img/logo-collapse.png">
+				</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li class="sidebar-toggle dropdown"><a href="javascript:void(0)" class="ripple"><i class="feather feather-menu list-icon fs-20"></i></a>
+				</li>
+			</ul>
+			<div class="spacer"></div>
+			<ul class="nav navbar-nav d-none d-lg-flex ml-2 ml-0-rtl">
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="feather feather-bell list-icon"></i> <span class="button-pulse bg-danger"></span></a>
+					<div class="dropdown-menu dropdown-left dropdown-card dropdown-card-dark animated flipInY">
+						<div class="card">
+							<header class="card-header d-flex justify-content-between mb-0"><a href="javascript:void(0);"><i class="feather feather-bell color-primary" aria-hidden="true"></i></a>  <span class="heading-font-family flex-1 text-center fw-400">Notifications</span>  <a href="javascript:void(0);"><i class="feather feather-settings color-content"></i></a>
+							</header>
+							<ul class="card-body list-unstyled dropdown-list-group">
+								<li><a href="#" class="media"><span class="d-flex"><i class="material-icons list-icon">check</i> </span><span class="media-body"><span class="heading-font-family media-heading">Invitation accepted</span> <span class="media-content">Your have been Invited ...</span></span></a>
+								</li>
+								<li><a href="#" class="media"><span class="d-flex thumb-xs user--online"><img src="/demo/users/user3.jpg" class="rounded-circle" alt=""> </span><span class="media-body"><span class="heading-font-family media-heading">Steve Smith</span> <span class="media-content">I slowly updated projects</span></span></a>
+								</li>
+								<li><a href="#" class="media"><span class="d-flex"><i class="material-icons list-icon">event_available</i> </span><span class="media-body"><span class="-heading-font-family media-heading">To Do</span> <span class="media-content">Meeting with Nathan on Friday 8 AM ...</span></span></a>
+								</li>
+							</ul>
+							<!-- /.dropdown-list-group -->
+							<footer class="card-footer text-center"><a href="javascript:void(0);" class="headings-font-family text-uppercase fs-13">See all activity</a>
+							</footer>
+						</div>
+						<!-- /.card -->
+					</div>
+					<!-- /.dropdown-menu -->
+				</li>
+				<!-- /.dropdown -->
+				<li><a href="javascript:void(0);" class="right-sidebar-toggle"><i class="feather feather-settings list-icon"></i></a>
+				</li>
+			</ul>
+			<!-- /.navbar-right -->
+			<!-- User Image with Dropdown -->
+			<ul class="nav navbar-nav">
+				<li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle dropdown-toggle-user ripple" data-toggle="dropdown"><span class="avatar thumb-xs2"><img src="/demo/users/user1.jpg" class="rounded-circle" alt=""> <i class="feather feather-chevron-down list-icon"></i></span></a>
+					<div
+					class="dropdown-menu dropdown-left dropdown-card dropdown-card-dark dropdown-card-profile animated flipInY">
+						<div class="card">
+							<header class="card-header d-flex mb-0"><a href="javascript:void(0);" class="col-md-4 text-center"><i class="feather feather-user-plus align-middle"></i> </a><a href="javascript:void(0);" class="col-md-4 text-center"><i class="feather feather-settings align-middle"></i> </a>
+								<a
+								href="javascript:void(0);" class="col-md-4 text-center"><i class="feather feather-power align-middle"></i>
+									</a>
+							</header>
+							<ul class="list-unstyled card-body">
+								<li><a href="#"><span><span class="align-middle">Manage Accounts</span></span></a>
+								</li>
+								<li><a href="#"><span><span class="align-middle">Change Password</span></span></a>
+								</li>
+								<li><a href="#"><span><span class="align-middle">Check Inbox</span></span></a>
+								</li>
+								<li><a href="#"><span><span class="align-middle">Sign Out</span></span></a>
+								</li>
+							</ul>
+							<!-- /.card-body -->
+						</div>
+						<!-- /.card -->
+	</div>
+	<!-- /.dropdown-card-profile -->
+	</li>
+	<!-- /.dropdown -->
+	</ul>
+	<!-- /.navbar-nav -->
+	</nav>
+	<!-- /.navbar -->

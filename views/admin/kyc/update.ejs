@@ -1,0 +1,80 @@
+<%- include('../layouts/header'); -%> 
+	<div class="content-wrapper">
+<%- include('../layouts/left_sidebar'); -%> 
+<main class="main-wrapper clearfix">
+	<!-- Page Title Area -->
+	<div class="row page-title clearfix">
+		<div class="page-title-left">
+			<h6 class="page-title-heading mr-0 mr-r-5">KYC Form</h6>
+		</div>
+		<!-- /.page-title-left -->
+		<div class="page-title-right d-none d-sm-inline-flex">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="index.html">Dashboard</a>
+				</li>
+				<li class="breadcrumb-item active">Create KYC</li>
+			</ol>
+		</div>
+		<!-- /.page-title-right -->
+	</div>
+	<!-- /.page-title -->
+	<!-- =================================== -->
+	<!-- Different data widgets ============ -->
+	<!-- =================================== -->
+	<div class="widget-list">
+		<div class="row">
+			<div class="col-md-12 widget-holder">
+				<div class="widget-bg">
+					<div class="widget-body clearfix">
+						<form action="/api/kyc/insert" method="POST">
+							<div class="form-group row">
+								<label class="col-md-3 col-form-label" for="l16">KYC Image</label>
+								<div class="col-md-4">
+									<input name="kyc_doc" value="<%= kyc.kyc_doc %> " id="l16" type="file">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-md-3 col-form-label" for="l13">KYC Status</label>
+								<div class="col-md-3">
+									<select value="<%= kyc.kyc_status == 1 ? 'Verified' : kyc.kyc_status == 2 ? 'Pending' : 'Cancel' %> " name="kyc_status"  class="form-control" id="l13">
+										<option value="1">Verified</option>
+										<option value="2">Pending</option>
+										<option value="3">Cancel</option>
+									</select>
+								</div>
+							</div>      
+							<%#                         
+							<div class="form-group row">
+								<!-- ici tu récupère la liste des utilisateurs au préalable et tu les injectes ici -->
+								<label class="col-md-3 col-form-label" for="l13">User</label>
+								<div class="col-md-3">
+									<select class="form-control" id="l13">
+										<option value="54">Albertino</option>
+										<option value="78">Marico</option>
+										<option value="13">Jordan</option>
+									</select>
+								</div>
+							</div>
+							 %>
+							<div class="form-actions">
+								<div class="form-group row">
+									<div class="col-md-9 ml-md-auto btn-list">
+										<button class="btn btn-primary btn-rounded" type="submit">Update</button>
+										<a href="/api/kyc">
+											<button class="btn btn-danger btn-rounded" type="button">Cancel</button>
+										</a>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+
+<%- include('../layouts/right_sidebar'); -%> 
+
+<!-- /.content-wrapper -->
+<%- include('../layouts/footer'); -%> 
