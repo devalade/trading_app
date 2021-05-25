@@ -32,10 +32,15 @@ const loginSchema = (req, res, next) => {
     // validateRequest(req, next, schema);
 }
 
+const apiLogin = (req, res, next) => {
+    passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/api/login',
+    failureFlash: true
+    })(req, res, next);
+}
+
 const login = (req, res, next) => {
-    console.log('Test de connexion jwt');
-    console.log(req.body);
-    // console.log('Connexion en cours... ')
     userService.authenticate(req, res)
 }
 
@@ -78,6 +83,25 @@ const registerSchema = (req, res, next) => {
     // validateRequest(req, next, schema);
 }
 
+const apiRegister = (req, res, next) => {
+    // req.body.is_active = req.body.is_active == 'on' ? 1 : 0;
+    if(req.body.user_role === 'demo'){
+       userService.create(req.body)
+        .then(() => {
+            req.logIn(user, (err) => {
+                if (err) {
+                    return next(err);
+                }
+                res.redirect('/');
+            });
+        })
+        .catch(next);    
+    }
+    userService.create(req.body)
+        .then(() => res.json("Register Successfull"))
+        .catch(next);
+}
+
 const register = (req, res, next) => {
     // req.body.is_active = req.body.is_active == 'on' ? 1 : 0;
     userService.create(req.body)
@@ -114,6 +138,12 @@ const getById = (req, res, next) =>{
         .catch(next);
 }
 
+const apiGetById = (req, res, next) =>{
+    userService.getById(req.params.id)
+        .then(user => res.json(user))
+        .catch(next);
+}
+
 const updateSchema = (req, res, next) => {
     const schema = Joi.object({
         user_name: Joi.string().min(4).empty(''),
@@ -141,15 +171,18 @@ module.exports = {
     getLogin,
     loginSchema,
     login,
+    apiLogin,
     logout,
     getRegister,
     isDemoUser,
     registerSchema,
     register,
+    apiRegister,
     create,
     getAll,
     getCurrent,
     getById,
+    apiGetById,
     showById,
     updateSchema,
     update,

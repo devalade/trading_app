@@ -2,12 +2,23 @@ const Joi = require('joi');
 const validateRequest = require('../middleware/validate-request');
 const AssetsService = require('../services/Assets');
 
+const apiGetAllAssets = (req, res, next) => {
+    AssetsService.getAllAssets()
+        .then(assets => res.json(assets))
+        .catch(next);
+}
+
 const getAllAssets = (req, res, next) => {
     AssetsService.getAllAssets()
         .then(assets => res.json(assets))
         .catch(next);
 }
 
+const apiGetAssetsById = (req, res, next) =>{
+    AssetsService.getById(req.params.id)
+        .then(assets => res.json(assets))
+        .catch(next);
+}
 const getAssetsById = (req, res, next) =>{
     AssetsService.getById(req.params.id)
         .then(assets => res.json(assets))
@@ -34,7 +45,9 @@ const _deleteAssets = (req, res, next) =>{
 
 module.exports = {
     getAllAssets,
+    apiGetAllAssets,
     getAssetsById,
+    apiGetAssetsById,
     insertAssets,
     updateAssets,
     _deleteAssets

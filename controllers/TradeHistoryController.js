@@ -8,7 +8,19 @@ const getAllTradeHistory = (req, res, next) => {
         .catch(next);
 }
 
+const apiGetAllTradeHistory = (req, res, next) => {
+    tradeHistoryService.getAll()
+        .then(tradeHistory => res.json(tradeHistory))
+        .catch(next);
+}
+
 const getTradeHistoryById = (req, res, next) =>{
+    TradeHistoryService.getById(req.params.id)
+        .then(tradeHistory => res.json(tradeHistory))
+        .catch(next);
+}
+
+const apiGetTradeHistoryById = (req, res, next) =>{
     TradeHistoryService.getById(req.params.id)
         .then(tradeHistory => res.json(tradeHistory))
         .catch(next);
@@ -34,7 +46,9 @@ const _deleteTradeHistory = (req, res, next) =>{
 
 module.exports = {
     getAllTradeHistory,
+    apiGetAllTradeHistory,
     getTradeHistoryById,
+    apiGetTradeHistoryById,
     insertTradeHistory,
     updateTradeHistory,
     _deleteTradeHistory

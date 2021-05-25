@@ -8,9 +8,21 @@ const getAllLanguage = (req, res, next) => {
         .catch(next);
 }
 
+const apiGetAllLanguage = (req, res, next) => {
+    LanguageService.getAll()
+        .then(languages => res.json(languages))
+        .catch(next);
+}
+
 const getLanguageById = (req, res, next) =>{
     LanguageService.getById(req.params.id)
         .then(language => res.render('admin/language/update', language))
+        .catch(next);
+}
+
+const apiGetLanguageById = (req, res, next) =>{
+    LanguageService.getById(req.params.id)
+        .then(language => res.json(language))
         .catch(next);
 }
 
@@ -34,7 +46,9 @@ const _deleteLanguage = (req, res, next) =>{
 
 module.exports = {
     getAllLanguage,
+    apiGetAllLanguage,
     getLanguageById,
+    apiGetLanguageById,
     insertLanguage,
     updateLanguage,
     _deleteLanguage

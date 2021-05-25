@@ -9,9 +9,21 @@ const getAllFaq = (req, res, next) => {
     
 }
 
+const apiGetAllFaq = (req, res, next) => {
+     FaqService.getAllFaq()
+            .then(faq => res.json(faq))
+            .catch(next);
+}
+
 const getFaqById = (req, res, next) =>{
     FaqService.getFaqById(req.params.id)
         .then(faq => res.render('admin/faq/update', {faq: faq}))
+        .catch(next);
+}
+
+const apiGetFaqById = (req, res, next) =>{
+    FaqService.getFaqById(req.params.id)
+            .then(faq => res.json(faq))
         .catch(next);
 }
 
@@ -37,7 +49,9 @@ const _deleteFaq = (req, res, next) =>{
 
 module.exports = {
     getAllFaq,
+    apiGetAllFaq,
     getFaqById,
+    apiGetFaqById,
     insertFaq,
     updateFaq,
     _deleteFaq

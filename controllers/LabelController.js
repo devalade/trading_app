@@ -8,7 +8,19 @@ const getAllLabel = (req, res, next) => {
         .catch(next);
 }
 
+const apiGetAllLabel = (req, res, next) => {
+    LabelService.getAllLabel()
+        .then(label => res.json(label))
+        .catch(next);
+}
+
 const getLabelById = (req, res, next) =>{
+    LabelService.getById(req.params.id)
+        .then(label => res.json(label))
+        .catch(next);
+}
+
+const apiGetLabelById = (req, res, next) =>{
     LabelService.getById(req.params.id)
         .then(label => res.json(label))
         .catch(next);
@@ -34,7 +46,9 @@ const _deleteLabel = (req, res, next) =>{
 
 module.exports = {
     getAllLabel,
+    apiGetAllLabel,
     getLabelById,
+    apiGetLabelById,
     insertLabel,
     updateLabel,
     _deleteLabel

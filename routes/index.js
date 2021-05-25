@@ -4,47 +4,17 @@ const { forwardAuthenticated, ensureAuthenticated } = require('../middleware/aut
 
 const passport = require('passport');
 const UserController = require('../controllers/UserController');
-const {
-    getAllLanguage,
-    getLanguageById,
-    insertLanguage,
-    updateLanguage,
-    _deleteLanguage
-} = require('../controllers/LanguageController');
+const LanguageController = require('../controllers/LanguageController');
 
-const {
-    getAllLabel,
-    getLabelById,
-    insertLabel,
-    updateLabel,
-    _deleteLabel
-} = require('../controllers/LabelController');
+const LabelController = require('../controllers/LabelController');
 
 const  News = require('../controllers/NewsController');
 
-const {
-    getAllEducation,
-    getEducationById,
-    insertEducation,
-    updateEducation,
-    _deleteEducation
-} = require('../controllers/EducationController');
+const EducationController = require('../controllers/EducationController');
 
-const {
-    getAllFaq,
-    getFaqById,
-    insertFaq,
-    updateFaq,
-    _deleteFaq
-} = require('../controllers/FaqController');
+const  FaqController = require('../controllers/FaqController');
 
-const {
-    getAllAssets,
-    getAssetsById,
-    insertAssets,
-    updateAssets,
-    _deleteAssets
-} = require('../controllers/AssetsController');
+const AssetsController = require('../controllers/AssetsController');
 
 const {
     getAllHelp,
@@ -77,6 +47,7 @@ const {
     updateWithdraw,
     _deleteWithdraw
 } = require('../controllers/WithdrawController');
+const TradeHistoryController = require('../controllers/TradeHistoryController')
 
 
 
@@ -104,15 +75,16 @@ router.get('404_override', (req, res) => res.send('404'));
 // router.get('/translate_uri_dashes')
 
 /*********Android API */
-router.post('/app_login', UserController.login);
-// router.post('/app_login', UserController.login);
+router.post('/app_login', UserController.apiLogin);
+router.post('/app_register', UserController.apiRegister
+);
 
-router.get('/getLanguages', passport.authenticate('jwt', { session: false }) ,getAllLanguage);
+router.get('/getLanguages', LanguageController.apiGetAllLanguage);
 router.get('/get_news', News.apiGetAllNews);
-router.get('/get_education', getAllEducation);
-router.get('/get_faq', getAllFaq);
+router.get('/get_education', EducationController.apiGetAllEducation );
+router.get('/get_faq', FaqController.apiGetAllFaq);
 router.get('/get_help', getAllHelp);
-router.get('/getLanguage_labels', getAllLabel);
+router.get('/getLanguage_labels', LabelController.apiGetAllLabel);
 // router.get('/paytm_api')
 // router.get('/skrill_api_payment')
 // router.get('/money_deposit_user')
@@ -125,35 +97,35 @@ router.get('/getLanguage_labels', getAllLabel);
 router.get('/user_logout', ensureAuthenticated ,UserController.logout)
 // router.get('/update_profile')
 // router.get('/buy_sell'ensureAuthenticated, )
-router.get('/assests_api', getAllAssets);
-// router.get('/get_trade_history', )
+router.get('/assests_api', AssetsController.getAllAssets);
 // router.get('/close_api')
+router.get('/get_trade_history/:id', TradeHistoryController.apiGetTradeHistoryById);
 // router.get('/auto_close_trade')
 // router.get('/log')
-// router.get('/trade_data')
-// router.get('/history_data')
+router.get('/trade_data')
+router.get('/history_data')
 // router.get('/get_payment_history')
 // router.get('/get_analytics_data')
 // router.get('/manage_user_settings')
-// router.get('/get_user_data',ensureAuthenticated, getCurrent);
+router.get('/get_user_data/:id', UserController.apiGetById);
 // router.get('/get_deposit_hint_data')
 
 // /********************** CRUD operation *************************/
 
 // /******** Languages Crud ***************/
-router.get('/language', getAllLanguage);
+router.get('/language', LanguageController.getAllLanguage);
 router.get('/language/insert', (req, res) => {res.render('admin/language/insert')});
-router.post('/language/insert', insertLanguage);
-router.get('/language/delete/:id', _deleteLanguage);
-router.get('/language/update/:id', getLanguageById);
-router.post('/language/update/:id', updateLanguage);
+router.post('/language/insert', LanguageController.insertLanguage);
+router.get('/language/delete/:id', LanguageController._deleteLanguage);
+router.get('/language/update/:id', LanguageController.getLanguageById);
+router.post('/language/update/:id', LanguageController.updateLanguage);
 
 // /* Language Label Crud */
-router.get('/language_label', getAllLabel);
-router.post('/insertlang_label', insertLabel);
-router.delete('/deletelang_label', _deleteLabel);
-router.get('/getlang_labelDetails', getLabelById);
-router.put('/updatelang_labelDetails',updateLabel);
+router.get('/language_label', LabelController.getAllLabel);
+router.post('/insertlang_label', LabelController.insertLabel);
+router.delete('/deletelang_label', LabelController._deleteLabel);
+router.get('/getlang_labelDetails', LabelController.getLabelById);
+router.put('/updatelang_labelDetails',LabelController.updateLabel);
 
 // /********** News *********/
 router.get('/news',News.getAllNews);
@@ -163,29 +135,29 @@ router.get('/get_news_details', News.getNewsById);
 router.put('/update_news_details', News.updateNews);
 
 // /********** Education *********/
-router.get('/education', getAllEducation);
+router.get('/education', EducationController.getAllEducation);
 router.get('/education/insert', (req, res) => {res.render('admin/education/insert')});
-router.post('/education/insert', insertEducation);
-router.get('/education/delete/:id', _deleteEducation);
-router.get('/education/update/:id', getEducationById);
-router.post('/education/update/:id', updateEducation);
+router.post('/education/insert', EducationController.insertEducation);
+router.get('/education/delete/:id', EducationController._deleteEducation);
+router.get('/education/update/:id',EducationController.getEducationById);
+router.post('/education/update/:id', EducationController.updateEducation);
 
 
 // /********** faq *********/
-router.get('/faq', getAllFaq);
+router.get('/faq', FaqController.getAllFaq);
 router.get('/faq/insert', (req, res) => { res.render('admin/faq/insert') });
-router.post('/faq/insert', insertFaq);
-router.get('/faq/delete/:id', _deleteFaq);
-router.get('/faq/:id', getFaqById);
-router.post('/faq/update/:id', updateFaq);
+router.post('/faq/insert', FaqController.insertFaq);
+router.get('/faq/delete/:id', FaqController._deleteFaq);
+router.get('/faq/:id', FaqController.getFaqById);
+router.post('/faq/update/:id', FaqController.updateFaq);
 
 
 // /********** Assets *********/
-router.get('/assets_data', getAllAssets);
-router.post('/insert_assets', insertAssets);
-router.delete('/delete_assets', _deleteAssets);
-router.get('/get_assets_details', getAssetsById);
-router.put('/update_assets_details', updateAssets);
+router.get('/assets_data', AssetsController.getAllAssets);
+router.post('/insert_assets', AssetsController.insertAssets);
+router.delete('/delete_assets', AssetsController._deleteAssets);
+router.get('/get_assets_details', AssetsController.getAssetsById);
+router.put('/update_assets_details', AssetsController.updateAssets);
 
 // /********** help *********/
 router.get('/help', getAllHelp);
@@ -227,12 +199,13 @@ router.delete('/delete_withdraw', _deleteWithdraw);
 router.get('/get_withdraw_details', getWithdrawById);
 router.put('/update_withdraw_details', updateWithdraw);
 
-// /********** Trade History *********/
-// router.get('/trade_history')
-// router.post('/insert_trade_history')
-// router.delete('/delete_trade_history')
-// router.get('/get_trade_history_details')
-// router.put('/update_trade_history_details')
+/********** Trade History *********/
+router.get('/trade_history', TradeHistoryController.getAllTradeHistory);
+router.get('/trade_history/create', (req, res) => { res.render('admin/users/create') });
+router.post('/trade_history/create', TradeHistoryController.insertTradeHistory);
+router.get('/trade_history/delete/:id', TradeHistoryController._deleteTradeHistory);
+router.get('/trade_history/update/:id', TradeHistoryController.getTradeHistoryById);
+router.post('/trade_history/update/:id', TradeHistoryController.updateTradeHistory);
 
 // /********** Payment History *********/
 // router.get('payment_history')

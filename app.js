@@ -72,7 +72,8 @@ app.use(function(req, res, next) {
 
 //CORS
 app.use(cors({
-  origin: "*"
+  origin: "*",
+  credentials: true
 }));
 
 //static files

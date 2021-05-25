@@ -8,9 +8,21 @@ const getAllEducation = (req, res, next) => {
         .catch(next);
 }
 
+const apiGetAllEducation = (req, res, next) => {
+    EducationService.getAll()
+        .then(educations => res.json(educations))
+        .catch(next);
+}
+
 const getEducationById = (req, res, next) =>{
     EducationService.getById(req.params.id)
         .then(education => res.render('admin/education/update', {education}))
+        .catch(next);
+}
+
+const apiGetEducationById = (req, res, next) =>{
+    EducationService.getById(req.params.id)
+        .then(education => res.json({education}))
         .catch(next);
 }
 
@@ -34,7 +46,9 @@ const _deleteEducation = (req, res, next) =>{
 
 module.exports = {
     getAllEducation,
+    apiGetAllEducation,
     getEducationById,
+    apiGetEducationById,
     insertEducation,
     updateEducation,
     _deleteEducation
