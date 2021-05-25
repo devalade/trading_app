@@ -20,13 +20,7 @@ const {
     _deleteLabel
 } = require('../controllers/LabelController');
 
-const {
-    getAllNews,
-    getNewsById,
-    insertNews,
-    updateNews,
-    _deleteNews
-} = require('../controllers/NewsController');
+const  News = require('../controllers/NewsController');
 
 const {
     getAllEducation,
@@ -114,7 +108,7 @@ router.post('/app_login', UserController.login);
 // router.post('/app_login', UserController.login);
 
 router.get('/getLanguages', passport.authenticate('jwt', { session: false }) ,getAllLanguage);
-router.get('/get_news', getAllNews);
+router.get('/get_news', News.apiGetAllNews);
 router.get('/get_education', getAllEducation);
 router.get('/get_faq', getAllFaq);
 router.get('/get_help', getAllHelp);
@@ -162,11 +156,11 @@ router.get('/getlang_labelDetails', getLabelById);
 router.put('/updatelang_labelDetails',updateLabel);
 
 // /********** News *********/
-router.get('/news', getAllNews);
-router.post('/insert_news', insertNews);
-router.delete('/delete_news', _deleteNews);
-router.get('/get_news_details', getNewsById);
-router.put('/update_news_details', updateNews);
+router.get('/news',News.getAllNews);
+router.post('/insert_news', News.insertNews);
+router.delete('/delete_news', News._deleteNews);
+router.get('/get_news_details', News.getNewsById);
+router.put('/update_news_details', News.updateNews);
 
 // /********** Education *********/
 router.get('/education', getAllEducation);
