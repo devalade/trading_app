@@ -111,6 +111,8 @@ router.get('404_override', (req, res) => res.send('404'));
 
 /*********Android API */
 router.post('/app_login', UserController.login);
+// router.post('/app_login', UserController.login);
+
 router.get('/getLanguages', passport.authenticate('jwt', { session: false }) ,getAllLanguage);
 router.get('/get_news', getAllNews);
 router.get('/get_education', getAllEducation);

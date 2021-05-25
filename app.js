@@ -71,7 +71,9 @@ app.use(function(req, res, next) {
 });
 
 //CORS
-app.use(cors());
+app.use(cors({
+  origin: "*"
+}));
 
 //static files
 app.use(express.static(path.join(__dirname, 'public')));
@@ -132,9 +134,9 @@ io.on('connection', (socket) =>{
       
 
         // SELL
-        if (trade_type === 2) {
+        if (datas.trade_type === 2 ) {
           
-          if ( datas.trade_type === 2 && closePrice.data.assets.fsyms.tsyms > datas.bid_price) {
+          if (closePrice.data.assets.fsyms.tsyms > datas.bid_price) {
             console.log("Win")
             const win = await db.query(`UPDATE trade_history SET total_earning = 0 close_price = ${closePrice.data[fsyms][tsyms]} trade_status=1 WHERE id = ${datas.id}`);
           }
@@ -147,7 +149,7 @@ io.on('connection', (socket) =>{
           
 
         //BUY
-        if (datas.trade_type === 1 && closePrice.data.assets.fsyms.tsyms < datas.bid_price) {
+        if ( closePrice.data.assets.fsyms.tsyms < datas.bid_price) {
           console.log("Win")
           const win = await db.query(`UPDATE trade_history SET total_earning = 0 close_price = ${closePrice.data[fsyms][tsyms]} trade_status=1 WHERE id = ${result.id}`);
         }
