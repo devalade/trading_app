@@ -110,7 +110,7 @@ io.on('connection', (socket) =>{
     fsyms: 'BTC',
     tsyms: 'USD'
     }
-
+//mysql://ba88b94054095b:f5d4422c@us-cdbr-east-03.cleardb.com/heroku_99b69665e2d8917?reconnect=true
      console.log("Sell action is working");
     let amount = user.OneUserInfos(datas.userId);
     amount = amount - datas.bid_price;
