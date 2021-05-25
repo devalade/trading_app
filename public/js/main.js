@@ -5,7 +5,7 @@ const sellButton = document.querySelector('#sell');
 const buyButton = document.querySelector('#buy');
 
 
-const socket = io.connect('http://127.0.0.1:4000/');
+const socket = io.connect();
 // écoute du socket news
 socket.on('news', function(msg){
     console.log(msg)
