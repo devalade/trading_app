@@ -1,5 +1,6 @@
 ﻿const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const sendEmail = require('../config/send-email');
 const db = require('../config/database');
 const Op = db.Sequelize.Op;
 const UserModels = require('../models/User');
@@ -41,7 +42,9 @@ module.exports = {
     delete: _delete,
     getUserByEmail,
     findById: UserModels.findByPk,
-    findOne: UserModels.findOne
+    findOne: UserModels.findOne,
+    sendPasswordResetEmail,
+    forgotPassword
 };
 
 async function UsersAllInfos () {
@@ -138,24 +141,27 @@ async function create(params) {
 }
 
 async function update(id, params) {
-    const user = await getUser(id);
 
-    // validate
-    const usernameChanged = params.user_name && user.user_name !== params.user_name;
-    if (usernameChanged && await UserModels.findOne({ where: { user_name: params.user_name } })) {
-        throw 'Username "' + params.user_name + '" is already taken';
-    }
-
-    // hash password if it was entered
-    if (params.user_password) {
-        params.hash = await bcrypt.hash(params.user_password, 10);
-    }
-
-    // copy params to user and save
-    Object.assign(user, params);
-    await user.save();
-
-    return omitHash(user.get());
+  UserModels.update(params, {
+    where: { id: id }
+  })
+    .then(num => {
+      if (num == 1) {
+        res.send({
+          message: "User was updated successfully."
+        });
+      } else {
+        res.send({
+          message: `Cannot update User with id=${id}. Maybe Tutorial was not found or req.body is empty!`
+        });
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Error updating User with id=" + id
+      });
+    });
+    
 }
 
 async function _delete(id) {
@@ -179,7 +185,36 @@ async function getUser(id) {
     return user;
 }
 
-function omitHash(user) {
-    const { hash, ...userWithoutHash } = user;
-    return userWithoutHash;
+async function forgotPassword({ user_email }, origin) {
+    const user = await UserModels.findOne({ where: { user_email } });
+
+    // always return ok response to prevent email enumeration
+    if (!user) return;
+
+    // create reset token that expires after 24 hours
+    user.resetToken = randomTokenString();
+    user.resetTokenExpires = new Date(Date.now() + 24*60*60*1000);
+    await user.save();
+
+    // send email
+    await sendPasswordResetEmail(account, origin);
+}
+
+async function sendPasswordResetEmail(user, origin) {
+    let message;
+    if (origin) {
+        const resetUrl = `${origin}/account/reset-password?token=${account.resetToken}`;
+        message = `<p>Please click the below link to reset your password, the link will be valid for 1 day:</p>
+                   <p><a href="${resetUrl}">${resetUrl}</a></p>`;
+    } else {
+        message = `<p>Please use the below token to reset your password with the <code>/account/reset-password</code> api route:</p>
+                   <p><code>${account.resetToken}</code></p>`;
+    }
+
+    await sendEmail({
+        to: account.email,
+        subject: 'Sign-up Verification API - Reset Password',
+        html: `<h4>Reset Password Email</h4>
+               ${message}`
+    });
 }

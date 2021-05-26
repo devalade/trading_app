@@ -32,7 +32,7 @@ const loginSchema = (req, res, next) => {
     // validateRequest(req, next, schema);
 }
 
-const apiLogin = (req, res, next) => {
+const login = (req, res, next) => {
     passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/api/login',
@@ -40,17 +40,18 @@ const apiLogin = (req, res, next) => {
     })(req, res, next);
 }
 
-const login = (req, res, next) => {
+const apiLogin = (req, res, next) => {
     userService.authenticate(req, res)
 }
 
 const logout = (req, res) => {
     req.logout();
-  req.session.destroy((err) => {
-    if (err) console.log('Error : Failed to destroy the session during logout.', err);
-    req.user = null;
-    res.redirect('/home');
-  });
+}
+
+const forgotPassword = (req, res, next) => {
+    userService.forgotPassword(req.body, req.get('origin'))
+        .then(() => res.json({ message: 'Please check your email for password reset instructions' }))
+        .catch(next);
 }
 
 const isDemoUser = async (req, res, next) => {
@@ -92,8 +93,8 @@ const apiRegister = (req, res, next) => {
                 if (err) {
                     return next(err);
                 }
-                res.redirect('/');
             });
+            res.json({ message: "We genarate a demo user" });
         })
         .catch(next);    
     }
@@ -161,6 +162,11 @@ const update = (req, res, next) => {
         .catch(next);
 }
 
+const apiUpdate = (req, res, next) => {
+    req.body.is_active = req.body.is_active == 'on' ? 1 : 0;
+    userService.update(req.params.id, req.body)
+}
+
 const _delete = (req, res, next) =>{
     userService.delete(req.params.id)
         .then(() => res.redirect('/api/user'))
@@ -186,5 +192,7 @@ module.exports = {
     showById,
     updateSchema,
     update,
-    _delete
+    apiUpdate,
+    _delete,
+    forgotPassword
 }

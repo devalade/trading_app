@@ -8,9 +8,21 @@ const getAllHelp = (req, res, next) => {
         .catch(next);
 }
 
+const apiGetAllHelp = (req, res, next) => {
+    HelpService.getAll()
+        .then(helps => res.json(helps))
+        .catch(next);
+}
+
 const getHelpById = (req, res, next) =>{
     HelpService.getById(req.params.id)
         .then(help => res.render('admin/help/update', {help: help}))
+        .catch(next);
+}
+
+const apiGetHelpById = (req, res, next) =>{
+    HelpService.getById(req.params.id)
+        .then(help => res.json(help))
         .catch(next);
 }
 
@@ -36,7 +48,9 @@ const _deleteHelp = (req, res, next) =>{
 
 module.exports = {
     getAllHelp,
+    apiGetAllHelp,
     getHelpById,
+    apiGetHelpById,
     insertHelp,
     updateHelp,
     _deleteHelp

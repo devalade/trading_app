@@ -3,31 +3,31 @@ const validateRequest = require('../middleware/validate-request');
 const PaytmService = require('../services/Paytm');
 
 const getAllPaytm = (req, res, next) => {
-    PaytmService.getAll()
+    PaytmService.getAllPaytm()
         .then(paytm => res.json(paytm))
         .catch(next);
 }
 
 const getPaytmById = (req, res, next) =>{
-    PaytmService.getById(req.params.id)
+    PaytmService.getPaytmById(req.params.id)
         .then(paytm => res.json(paytm))
         .catch(next);
 }
 
 const insertPaytm = (req, res, next) => {
-    PaytmService.create(req.body)
+    PaytmService.insertPaytm(req.body)
         .then(() => res.json('Insertion de paytm ...'))
         .catch(next);
 }
 
 const updatePaytm = (req, res, next) =>{
-    PaytmService.update(req.params.id, req.body)
+    PaytmService.updatePaytm(req.params.id, req.body)
         .then(paytm => res.json(paytm))
         .catch(next);
 }
 
 const _deletePaytm = (req, res, next) =>{
-    PaytmService.delete(req.params.id)
+    PaytmService._deletePaytm(req.params.id)
         .then(() => res.json({ message: 'Paytm deleted successfully' }))
         .catch(next);
 }

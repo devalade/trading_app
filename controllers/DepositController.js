@@ -8,15 +8,33 @@ const getAllDeposit = (req, res, next) => {
         .catch(next);
 }
 
+const apiGetAllDeposit = (req, res, next) => {
+    DepositService.getAll()
+        .then(deposits => res.json(deposits))
+        .catch(next);
+}
+
 const getDepositById = (req, res, next) =>{
     DepositService.getById(req.params.id)
         .then(deposit => res.render('admin/deposit/update', {deposit}))
         .catch(next);
 }
 
+const apiGetDepositById = (req, res, next) =>{
+    DepositService.getById(req.params.id)
+        .then(deposit => res.json( deposit))
+        .catch(next);
+}
+
 const insertDeposit = (req, res, next) => {
     DepositService.insert(req.body)
         .then(() => res.redirect('/api/deposit'))
+        .catch(next);
+}
+
+const apiInsertDeposit = (req, res, next) => {
+    DepositService.insert(req.body)
+        .then(() => res.json("Depisit successful"))
         .catch(next);
 }
 
@@ -34,8 +52,11 @@ const _deleteDeposit = (req, res, next) =>{
 
 module.exports = {
     getAllDeposit,
+    apiGetAllDeposit,
     getDepositById,
+    apiGetDepositById,
     insertDeposit,
+    apiInsertDeposit,
     updateDeposit,
     _deleteDeposit
 }

@@ -16,21 +16,9 @@ const  FaqController = require('../controllers/FaqController');
 
 const AssetsController = require('../controllers/AssetsController');
 
-const {
-    getAllHelp,
-    getHelpById,
-    insertHelp,
-    updateHelp,
-    _deleteHelp
-} = require('../controllers/HelpController');
+const HelpController = require('../controllers/HelpController');
 
-const {
-    getAllDeposit,
-    getDepositById,
-    insertDeposit,
-    updateDeposit,
-    _deleteDeposit
-} = require('../controllers/DepositController');
+const DepositController  = require('../controllers/DepositController');
 
 const {
     getAllPaytm,
@@ -40,15 +28,9 @@ const {
     _deletePaytm
 } = require('../controllers/PaytmController');
 // const { create } = require('../services/User');
-const {
-    getAllWithdraw,
-    getWithdrawById,
-    insertWithdraw,
-    updateWithdraw,
-    _deleteWithdraw
-} = require('../controllers/WithdrawController');
-const TradeHistoryController = require('../controllers/TradeHistoryController')
-
+const WithdrawController = require('../controllers/WithdrawController');
+const TradeHistoryController = require('../controllers/TradeHistoryController');
+const ApiRequestController = require('../controllers/ApiRequestController');
 
 
 // routes
@@ -83,32 +65,32 @@ router.get('/getLanguages', LanguageController.apiGetAllLanguage);
 router.get('/get_news', News.apiGetAllNews);
 router.get('/get_education', EducationController.apiGetAllEducation );
 router.get('/get_faq', FaqController.apiGetAllFaq);
-router.get('/get_help', getAllHelp);
+router.get('/get_help', HelpController.apiGetAllHelp);
 router.get('/getLanguage_labels', LabelController.apiGetAllLabel);
 // router.get('/paytm_api')
 // router.get('/skrill_api_payment')
-// router.get('/money_deposit_user')
+router.get('/money_deposit_user')
 // router.get('/kyc_verification')
 // router.get('/profile_pic')
 // router.get('/withdraw_api')
-// router.get('/forgot_password')
+router.get('/forgot_password', UserController.forgotPassword)
 // router.get('/change_security')
 // router.get('/change_user_auth')
-router.get('/user_logout', ensureAuthenticated ,UserController.logout)
-// router.get('/update_profile')
-// router.get('/buy_sell'ensureAuthenticated, )
+router.get('/user_logout' ,UserController.logout)
+router.get('/update_profile', UserController.update)
+        // router.get('/buy_sell'ensureAuthenticated, )
 router.get('/assests_api', AssetsController.getAllAssets);
-// router.get('/close_api')
+router.get('/close_api', ApiRequestController.closePrice);
 router.get('/get_trade_history/:id', TradeHistoryController.apiGetTradeHistoryById);
-// router.get('/auto_close_trade')
-// router.get('/log')
-router.get('/trade_data')
-router.get('/history_data')
-// router.get('/get_payment_history')
+        // router.get('/auto_close_trade')
+        // router.get('/log')
+router.get('/trade_data/:fsym&:tsym:&limit',  ApiRequestController.tradeData)
+router.get('/history_data/:fsym&:tsym')
+router.get('/get_payment_history')
 // router.get('/get_analytics_data')
 // router.get('/manage_user_settings')
 router.get('/get_user_data/:id', UserController.apiGetById);
-// router.get('/get_deposit_hint_data')
+router.get('/get_deposit_hint_data/:id', DepositController.apiGetDepositById);
 
 // /********************** CRUD operation *************************/
 
@@ -160,20 +142,20 @@ router.get('/get_assets_details', AssetsController.getAssetsById);
 router.put('/update_assets_details', AssetsController.updateAssets);
 
 // /********** help *********/
-router.get('/help', getAllHelp);
-router.post('/help/insert', insertHelp);
+router.get('/help', HelpController.getAllHelp);
+router.post('/help/insert', HelpController.insertHelp);
 router.get('/help/insert', (req, res) => {res.render('admin/help/insert')});
-router.get('/help/delete/:id', _deleteHelp);
-router.get('/help/:id', getHelpById);
-router.post('/help/update/:id', updateHelp);
+router.get('/help/delete/:id', HelpController._deleteHelp);
+router.get('/help/:id', HelpController.getHelpById);
+router.post('/help/update/:id', HelpController.updateHelp);
 
 // /********** Deposit *********/
-router.get('/deposit', getAllDeposit);
+router.get('/deposit', DepositController.getAllDeposit);
 router.get('/deposit/insert', (req, res) => {res.render('admin/deposit/insert')});
-router.post('/deposit/insert', insertDeposit);
-router.get('/deposit/delete/:id', _deleteDeposit);
-router.get('/deposit/update/:id', getDepositById);
-router.post('/deposit/update/:id', updateDeposit);
+router.post('/deposit/insert', DepositController.insertDeposit);
+router.get('/deposit/delete/:id', DepositController._deleteDeposit);
+router.get('/deposit/update/:id', DepositController.getDepositById);
+router.post('/deposit/update/:id', DepositController.updateDeposit);
 
 // /********** Paytm *********/
 router.get('/paytm_transcation', getAllPaytm);
@@ -193,11 +175,11 @@ router.get('/user/update/:id', UserController.update);
 
 
 // /********** Withdraw *********/
-router.get('/withdraw', getAllWithdraw);
-router.post('/insert_withdraw', insertWithdraw);
-router.delete('/delete_withdraw', _deleteWithdraw);
-router.get('/get_withdraw_details', getWithdrawById);
-router.put('/update_withdraw_details', updateWithdraw);
+router.get('/withdraw', WithdrawController.getAllWithdraw);
+router.post('/insert_withdraw', WithdrawController.insertWithdraw);
+router.delete('/delete_withdraw', WithdrawController._deleteWithdraw);
+router.get('/get_withdraw_details', WithdrawController.getWithdrawById);
+router.put('/update_withdraw_details', WithdrawController.updateWithdraw);
 
 /********** Trade History *********/
 router.get('/trade_history', TradeHistoryController.getAllTradeHistory);
