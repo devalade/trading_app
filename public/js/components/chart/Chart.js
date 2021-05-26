@@ -1,4 +1,4 @@
-// import {datas} from './data.js';
+import {datas} from './data.js';
 
 export const container = document.createElement('div');
 const dimension = {
@@ -16,11 +16,9 @@ var chart = LightweightCharts.createChart(container, {
 });
 
 
-// const datas = await 
-
 // const socket = io.connect('https://streamer.cryptocompare.com/');
 // subscription =  ['5~CCCAGG~BTC~USD']
-
+// const res = fetch('https://min-api.cryptocompare.com/data/generateAvg?fsym=BTC&tsym=USD&e=Poloniex,Kraken');
 
 // chart.subscribeCrosshairMove(param => {
 //     console.log(param.hoveredMarkerId);
@@ -35,12 +33,8 @@ var chart = LightweightCharts.createChart(container, {
 
 // Candle series
 var candleSeries = chart.addCandlestickSeries();
-// var data = datas.Data.Data;
-
-// fetch(`https://min-api.cryptocompare.com/data/v2/histoday?fsym=BTC&tsym=USD&limit=50`)
-// 	.then(data => console.log(data))
-// 	.catch();
-
+var data = datas.Data.Data;
+candleSeries.setData(data);
 
 candleSeries.setMarkers(
 	[{
@@ -170,16 +164,3 @@ function calculateSMA(data, count){ // SMA
 	console.log(result);
   return result;
 }
-
-
-
-// Connection to the socket io
-const socket = io.connect();
-// écoute du socket news
-socket.on('informations', function (values) {
-	fetch('https://min-api.cryptocompare.com/data/generateAvg?fsym=BTC&tsym=USD&e=Kraken')
-		.then(data => console.log(data))
-		.catch();	
-	candleSeries.setData({time: values.TS, open: values.P, high: values.P, low: values.P, close: values.P})
-	// console.log(values)
-});
