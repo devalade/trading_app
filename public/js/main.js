@@ -4,12 +4,12 @@ import { container } from './components/chart/Chart.js';
 const sellButton = document.querySelector('#sell');
 const buyButton = document.querySelector('#buy');
 
-
 const socket = io.connect();
 // écoute du socket news
-socket.on('news', function(msg){
-    console.log(msg)
-});
+// socket.on('informations', function(msg){
+//     console.log(msg)
+// });
+
 
 const sellAction = () => {
     console.log("Insertion du bid price dans la base de donnees");

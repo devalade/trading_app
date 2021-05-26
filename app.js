@@ -91,9 +91,38 @@ app.use('/', (req, res) => {
   res.render('index')
 })
 
+
+const WebSocket = require('ws');
+
+const apiKey = '99271d43f528ccccc0ad45cf7baa395d0099e11c5edec5ddfcc9cf10b34b2ee4';
+
+const ccStreamer = new WebSocket('wss://streamer.cryptocompare.com/v2?api_key=' + apiKey);
+
+
+
 // établissement de la connexion
 io.on('connection', (socket) =>{
   console.log(`Connecté au client ${socket.id}`);
+
+  ccStreamer.on('open', function open() {
+      var subRequest = {
+          "action": "SubAdd",
+          "subs": ["0~Binance~BTC~USDT"]
+      };
+      ccStreamer.send(JSON.stringify(subRequest));
+  });
+
+  ccStreamer.on('message', async function incoming(data) {
+    // console.log(data);
+    // const c = await axios.get(`https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,USD,XRP,LTC,NEO,ETH,TRX,OXT,EUR,XTZ,GBP,LINK,BCH,JST,LTC&tsyms=BTC,USD,XRP,LTC,NEO,ETH,TRX,OXT,EUR,XTZ,GBP,LINK,BCH,JST,LTC`);
+
+    const c = await axios.get('https://min-api.cryptocompare.com/data/generateAvg?fsym=BTC&tsym=USD&e=Kraken&api_key='+apiKey)
+	
+    socket.emit('informations', JSON.parse(data))
+  });
+  
+  // io.listen('https://streamer.cryptocompare.com/'+api_key)
+  // io.of('').emit('SubAdd', { subs: subscription });
   // émission d'un évènement
   io.emit('news', 'Voici un nouvel élément envoyé par le serveur');
   
