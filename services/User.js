@@ -47,6 +47,29 @@ module.exports = {
     forgotPassword
 };
 
+// const handleErrors = (err) => {
+//   console.log(err.message, err.code);
+//   let errors = { email: '', password: '' };
+
+//   // duplicate email error
+//   if (err.code === 11000) {
+//     errors.email = 'that email is already registered';
+//     return errors;
+//   }
+
+//   // validation errors
+//   if (err.message.includes('user validation failed')) {
+//     // console.log(err);
+//     Object.values(err.errors).forEach(({ properties }) => {
+//       // console.log(val);
+//       // console.log(properties);
+//       errors[properties.path] = properties.message;
+//     });
+//   }
+
+//   return errors;
+// }
+
 async function UsersAllInfos () {
     return await UserModels.findAll({
         include: [WithdrawModels, TradeHistoryModels]
@@ -62,12 +85,13 @@ async function OneUserInfos (id) {
     
 }
 
- async function authenticate(req, res, next) {
+async function authenticate(req, res, next) {
+  console.log(req.body);
      const { user_email, user_password } = req.body;
-     console.log(req.body);
+    //  console.log(req.body);
 
   if (!user_email || !user_password) {
-    return res.status(400).send("Email or password is missing");
+    return res.status(400).json({error: "Email or password is missing"});
   }
 
   try {
@@ -78,25 +102,25 @@ async function OneUserInfos (id) {
     //   if (dbUser.role === "user") {
     //     throw new Error("User is not authorized to login");
     //   }
+      const maxAge = Math.floor(Date.now() / 1000) + 60 * 60;
+      const token = jwt.sign(
+        {
+          exp: Math.floor(Date.now() / 1000) + 60 * 60,
+          id: dbUser.id,
+          email: dbUser.user_email,
+          name: dbUser.user_name
+        },
+        process.env.ACCESS_TOKEN_SECRET
+      );
 
-      return res.send({
-        data: jwt.sign(
-          {
-            exp: Math.floor(Date.now() / 1000) + 60 * 60,
-            id: dbUser.id,
-            email: dbUser.user_email,
-            name: dbUser.user_name
-          },
-          process.env.ACCESS_TOKEN_SECRET
-          ),
-          message: "Message back! "
-      });
+      res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge * 1000})
+      return res.json({ token, message: "Welcome back! "});
     }
 
     throw new Error("invalid password");
   } catch (e) {
     console.log(e.message);
-    return res.status(400).send({ error: "Wrong email or password entered" });
+    return res.status(400).json({ error: "Wrong email or password entered" });
   }
 };
 

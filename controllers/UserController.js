@@ -18,6 +18,9 @@ const LOGIN_TYPE = {
     real: 'real'
 }
 
+// handle errors
+
+
 const getLogin = (req, res) => {
     res.render('auth/login')
 }
@@ -33,11 +36,12 @@ const loginSchema = (req, res, next) => {
 }
 
 const login = (req, res, next) => {
-    passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/api/login',
-    failureFlash: true
-    })(req, res, next);
+    userService.authenticate(req, res)
+    // passport.authenticate('local', {
+    // successRedirect: '/',
+    // failureRedirect: '/api/login',
+    // failureFlash: true
+    // })(req, res, next);
 }
 
 const apiLogin = (req, res, next) => {

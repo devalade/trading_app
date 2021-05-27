@@ -1,85 +1,190 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="">
 
 <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
-    <link rel="icon" type="image/png" sizes="16x16" href="/demo/favicon.png">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Login</title>
-    <!-- CSS -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600%7CRoboto:400" rel="stylesheet" type="text/css">
-    <link href="/vendors/material-icons/material-icons.css" rel="stylesheet" type="text/css">
-    <link href="/vendors/mono-social-icons/monosocialiconsfont.css" rel="stylesheet" type="text/css">
-    <link href="/vendors/feather-icons/feather.css" rel="stylesheet" type="text/css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.7.0/css/perfect-scrollbar.min.css" rel="stylesheet" type="text/css">
-    <link href="/css/style.css" rel="stylesheet" type="text/css">
-    <!-- Head Libs -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+    <link rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <!-- <link rel="stylesheet" href="/css/new.css"> -->
 </head>
 
-<body class="body-bg-full profile-page" style="background-image: url(/img/site-bg.jpg)">
-    <div id="wrapper" class="row wrapper">
-        <div class="container-min-full-height d-flex justify-content-center align-items-center">
-            <div class="login-center">
-                <div class="navbar-header text-center mt-2 mb-4">
-                    <a href="/home">
-                        <img alt="" src="/img/logo-light.png">
-                    </a>
+<body class="bd_calss">
+    <section id="nav_section">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
+
+                <!--manu part stat-->
+                <!-- Button trigger modal -->
+                <div class="navbar">
+                    <ul>
+                        <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
+                            <span class="navbar-light navbar-toggler-icon"><i class="fas fa-bars icon_manu"></i></span>
+                        </button>
+
+                        <li class="nav_back"><a href="#">LIVE ACCOUNT</a></li>
+                        <li><a href="#">10008.5$</a></li>
+                    </ul>
+                    <div class="icon_header">
+                        <a href="#"><i class="fas fa-arrow-left"></i></a>
+                    </div>
+
                 </div>
-                <!-- /.navbar-header -->
-                <form method="POST" action="/api/login">
-                    <div class="form-group">
-                        <label for="example-email">Email</label>
-                        <input type="email" placeholder="johndoe@site.com" class="form-control form-control-line" name="email" id="example-email">
-                    </div>
-                    <div class="form-group">
-                        <label for="example-password">Password</label>
-                        <input type="password" placeholder="password" id="example-password" name="password" class="form-control form-control-line">
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-block btn-lg btn-primary text-uppercase fs-12 fw-600" type="submit">Login</button>
-                    </div>
-                    <div class="form-group no-gutters mb-0">
-                        <div class="col-md-12 d-flex">
-                            <div class="checkbox checkbox-primary mr-auto mr-0-rtl ml-auto-rtl">
-                                <label class="d-flex">
-                                    <input type="checkbox"> <span class="label-text">Remember me</span>
-                                </label>
-                            </div><a href="javascript:void(0)" id="to-recover" class="my-auto pb-2 text-right"><i class="material-icons mr-2 fs-18">lock</i> Forgot Password?</a>
+
+                <!-- Modal -->
+                <div class="modal right fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">
+                                    <div class="demoClass">
+                                        <img src="/img/images.png" alt="">
+                                        <h2>Demo</h2>
+                                        <p>10008.5$</p>
+                                        <a href="#">LIVE ACCOUNT</a>
+                                    </div>
+
+                                </h5>
+                                <!--
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+-->
+                            </div>
+                            <div class="modal-body">
+
+                                <ul class="navbar-nav ml-auto">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#"><i class="fas fa-luggage-cart header_icon"></i> Trade <span class="sr-only">(current)</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#"><i class="fas fa-luggage-cart header_icon"></i> Trade History</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#"><i class="fas fa-globe header_icon"></i> News</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#"><i class="far fa-question-circle header_icon"></i> Support</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#"><i class="fas fa-users-cog header_icon"></i> Setting</a>
+                                    </li>
+
+                                </ul>
+                            </div>
                         </div>
-                        <!-- /.col-md-12 -->
-                    </div>
-                    <!-- /.form-group -->
-                </form>
-                <!-- /.form-material -->
-                <hr>
-                <div class="row btn-list">
-                    <div class="col-md-6">
-                        <button type="button" class="btn btn-block btn-facebook ripple" data-toggle="tooltip" data-placement="top" title="Login with Facebook"><i class="social-icons list-icon">facebook</i> facebook</button>
-                    </div>
-                    <div class="col-md-6">
-                        <button type="submit" class="btn btn-block btn-googleplus ripple" data-toggle="tooltip" data-placement="top" title="Login with Google"><i class="social-icons list-icon">googleplus</i> google</button>
                     </div>
                 </div>
-                <!-- /.btn-list -->
-                <footer class="col-sm-12 text-center">
-                    <hr>
-                    <p>Don't have an account? <a href="/api/register" class="text-primary m-l-5"><b>Sign Up</b></a>
-                    </p>
-                </footer>
             </div>
-            <!-- /.login-center -->
         </div>
-        <!-- /.d-flex -->
-    </div>
-    <!-- /.body-container -->
-    <!-- Scripts -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="/js/material-design.js"></script>
+    </section>
+    <!--    header slider part finish-->
+
+
+    <!--    Login slider part start-->
+    <section id="login">
+        <div class="container">
+            <div class="login-wrap">
+
+                <div class="login-html">
+
+                    <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">LOGIN</label>
+                    <input id="tab-2" type="radio" name="tab" class="sign-up "><label for="tab-2" class="tab">REGISTER</label>
+
+                    <form id="loginForm" class="login-form">
+                        <div class="sign-in-htm">
+                            <div class="group">
+
+                                <input id="user_email" type="text" class="input" placeholder="Email Address">
+                            </div>
+                            <div class="group">
+
+                                <input id="user_password" type="password" class="input" data-type="password" placeholder="Password">
+                            </div>
+                            <div class="foot-lnk">
+                                <a href="#forgot">Forgot Password?</a>
+                            </div>
+                            <div class="group ">
+
+                                <input type="submit" class="button" value="LOGIN">
+                                <input type="submit" class="button register_btn" value="REGISTER">
+                            </div>
+
+                        </form>
+                        <form class="sign-up-htm">
+                            <div class="group">
+                                <label for="user_name" class="label">Username</label>
+                                <input id="user_name" type="text" class="input">
+                            </div>
+                            <div class="group">
+                                <label for="user_password" class="label">Password</label>
+                                <input id="user_password" type="password" class="input" data-type="password">
+                            </div>
+                            <div class="group">
+                                <label for="user_email" class="label">Email Address</label>
+                                <input id="user_email" type="text" class="input">
+                            </div>
+                            <div class="group">
+                                <input type="submit" class="button" value="REGISTER">
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!--loginn part finish-->
+
+
+
+    <!--jQuery par start-->
+    <script src="/js/jquery-1.12.4.min.js"></script>
+    <script src="/js/_bootstrap.min.js"></script>
+    <!--jQuery par finish-->
+
+    <!-- Javascript loguin part -->
+    <script > 
+        const loginForm = document.querySelector('#loginForm');
+        
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            // get values
+            console.log(loginForm)
+            const user_email = loginForm.user_email.value;
+            const user_password = loginForm.user_password.value;
+            console.log(user_email, user_password);
+
+            try {
+                const res = await fetch('/api/app_login', { 
+                    method: 'POST', 
+                    body: JSON.stringify({ user_email, user_password }),
+
+                    headers: {'Content-Type': 'application/json'}
+                });
+                
+                const data = await res.json();
+                
+                if (data.error) {
+                    console.log(data);
+                }
+                console.log(data.user)
+                if (data.user) {
+                    location.assign('/');
+                }
+            }
+            catch (err) {
+            console.log(err);
+            }
+    });
+    </script>
+
 </body>
 
 </html>

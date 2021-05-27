@@ -37,7 +37,7 @@ const ApiRequestController = require('../controllers/ApiRequestController');
 router.get('/login', forwardAuthenticated ,  (req, res) => {res.render('auth/login')});
 // router.post('/login', login);
 // Login
-router.post('/login', forwardAuthenticated, UserController.login);
+router.post('/login', UserController.login);
 router.post('/logout', ensureAuthenticated , UserController.logout);
 router.get('/register', forwardAuthenticated,UserController.getRegister);
 router.post('/register', forwardAuthenticated,UserController.register);
@@ -58,8 +58,7 @@ router.get('404_override', (req, res) => res.send('404'));
 
 /*********Android API */
 router.post('/app_login', UserController.apiLogin);
-router.post('/app_register', UserController.apiRegister
-);
+router.post('/app_register', UserController.apiRegister);
 
 router.get('/getLanguages', LanguageController.apiGetAllLanguage);
 router.get('/get_news', News.apiGetAllNews);
