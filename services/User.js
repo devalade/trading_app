@@ -114,7 +114,7 @@ async function authenticate(req, res, next) {
       );
 
       res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge * 1000})
-      return res.json({ token, message: "Welcome back! "});
+      return res.json({ user: dbUser.id, message: "Welcome back! "});
     }
 
     throw new Error("invalid password");
@@ -149,14 +149,16 @@ async function create(params) {
      
     if (params.login_type != 'demo') {
     
-        if ( await UserModels.findOne({ where: { user_email: params.user_email } })) {
-            throw 'Username "' + params.user_name + '" is already taken';
+        if ( await UserModels.findOne({ where: { user_email: params.user_email } })) {              return res.status(400).json({ error: "That email is already register" });
         }
 
         // hash password
-        if (params.user_password !== undefined) {
+      if (params.user_password !== undefined) {
+        if (params.user_password < 8) {
+            return res.status(400).json({ error: "minimum password length is 8 characters" });
+          }
             params.user_password =  await bcrypt.hash(params.user_password, 10);
-            console.log(params.user_password);
+            
         }
     }
 
