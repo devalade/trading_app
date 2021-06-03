@@ -1,3 +1,9 @@
+// import { container } from './components/chart/Chart.js';
+
+// // GRAB HTML ELEMENT
+const sellButton = document.querySelector('#sellButton');
+const buyButton = document.querySelector('#buyButton');
+
 function paddingNumberWithZero(num, length) {
     return ("0" + num).slice(-length);
 }
@@ -5,30 +11,6 @@ function paddingNumberWithZero(num, length) {
 function dateToString(date) {
     return paddingNumberWithZero(date.getHours(), 2) + ":" + paddingNumberWithZero(date.getMinutes(), 2) + ":" + paddingNumberWithZero(date.getSeconds(), 2);
 }
-
-let DATA = {};
-
-//Socket io
-const socket = io.connect('http://127.0.0.1:4000/');
-// écoute du socket news
-socket.on('informations', function(data){
-    DATA = { date: data.RTS, open: data.P, low: data.P, high: data.P, close: data.P };
-    console.log(DATA);
-});
-
-const sellAction = () => {
-    console.log("Insertion du bid price dans la base de donnees");
-    const datas = {
-        assetId: '1',
-        investement_amount: '200',
-        trade_type: 1
-    }
-    socket.emit('sellAction', {datas})
-
-}
-
-sellButton.addEventListener('click', sellAction);
-
 
 
 const ID_SERIES_LINE = "chart-series-line-area",
@@ -137,6 +119,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
             return axisRange;
         }
+
+        const socket = io.connect();
+// // écoute du socket news
+        socket.on('informations', function(msg){
+            console.log(msg);
+        });
+
 
         // Update chart data.
         function _updateChartData(data) {
@@ -555,7 +544,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     SERIES_DATA[ID_SERIES_LINE].push(newLineSeriesDataItem);
                     chart.invalidateRawData();
                 }
-            }, 3000);
+            }, 1000);
         }
 
         function startCandlestickSeriesDataTimer() {
@@ -682,6 +671,21 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }); // end am4core.ready()
 
-
+    const sellAction = () => {
     
+        socket.emit('socket', {data})
+    }
+
+    sellButton.addEventListener('click', sellAction);
+
 });
+
+
+
+
+
+// ============================================
+//Socket io code
+
+
+document.querySelector('#tv-chart').appendChild(container);

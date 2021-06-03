@@ -1,214 +1,217 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<!doctype html>
+<html class="no-js" lang="">
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
-	<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon.png">
-	<link rel="stylesheet" href="/css/pace.css">
-	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-	<title>Chart</title>
-	<!-- CSS -->
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600%7CRoboto:400" rel="stylesheet" type="text/css">
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link href="/vendors/mono-social-icons/monosocialiconsfont.css" rel="stylesheet" type="text/css">
-	<link href="/vendors/feather-icons/feather.css" rel="stylesheet" type="text/css">
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.7.0/css/perfect-scrollbar.min.css" rel="stylesheet" type="text/css">
-	<link href="/css/style.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Cryptocurreny Chart</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+    <!-- Place favicon.ico in the root directory -->
 
-	<!-- Head Libs -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-	<script data-pace-options='{ "ajax": false, "selectors": [ "img" ]}' src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
-	<style>
-		.right-sideba{
-            position: relative;
-			float: right;
-			right: 14.0625rem;
-            width: 14.0625rem;
-            -webkit-transform: translateX(100%);
-            transform: translateX(100%);
-            padding: 1.07143em;
-            border-color: rgba(255, 255, 255, 0.2);
-			z-index: 9;
-		}
-		.floating {
-            position : absolute;
-            z-index: 8;
-		}
-		.floating-bottom {
-			bottom: 5%;
-			left: 5%;
-			display: flex;
-			flex-direction: column;
-			justify-content: flex-end;
-		}
-		.floating-button {
-			background-color: #25313f;
-			padding: 8px;
-			margin-bottom: 10px;
-			border-radius: 8%;
-            width: 40px;
-			height: 40px;
-            opacity: .8;
-			color: #fff;
-            cursor: pointer;
-        }
-		.floating-button i {
-            margin: auto;
-		}
-		.main-wrapper {
-			padding: 0;
-		}
-        .floating-top {
-            top: 1%;
-            right: calc(14.0625rem + 15px);
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-end;
-        }
-		.floating-top-button{
-            margin: 5px;
-            align-items: center;
-            padding: 10px;
-			width: 100px;
-            height: 38px;
-            border-radius: 3px;
-            background-color: #25313f;
-            box-shadow: 0 2px 2px #000829;
-            color: #fff;
-            font-size: 15px;
-            opacity: .8;
-            cursor: pointer;
-            transition: opacity .15s;
-		}
-	</style>
+	<!-- CSS here -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/__bootstrap.min.css">
+    <link rel="stylesheet" href="/css/chart.css">
+    <!-- <link rel="stylesheet" href="/css/responsive.css"> -->
 </head>
+<body>
+    <section id="nav_section">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
 
-<body class="sidebar-dark sidebar-collapse content-dark navbar-brand-dark right-sidebar-dark right-sidebar-expand">
+                <!--manu part stat-->
+                <!-- Button trigger modal -->
+                <div class="navbar">
+                    <ul>
+                        <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
+                            <spna class="navbar-light navbar-toggler-icon"><i class="fas fa-bars icon_manu"></i></spna>
+                        </button>
 
-	<div id="wrapper" class="wrapper">
-		<aside class="site-sidebar scrollbar-enabled" style="top: 0">
-			<!-- Sidebar Menu -->
-			<nav class="sidebar-nav">
-				<ul class="nav in side-menu">
-					<li class="current-page menu-item-has-children">
-						<a href="#"><i class="list-icon material-icons">person</i><span class="hide-menu">Users</span></a>
-						<ul class="list-unstyled sub-menu">
-							<li><a href="#">List of users</a></li>
-							<li class=""><a href="#">Create new user</a></li>
-						</ul>
-					</li>
-					<li class="current-page menu-item-has-children">
-						<a href="#"><i class="list-icon material-icons">question_answer</i><span class="hide-menu">FAQ</span></a>
-						<ul class="list-unstyled sub-menu">
-							<li><a href="#">FAQ List</a></li>
-							<li><a href="#">Create new FAQ</a></li>
-						</ul>
-					</li>
-					<li class="current-page menu-item-has-children">
-						<a href="#"><i class="list-icon material-icons">help_outline</i><span class="hide-menu">Help</span></a>
-						<ul class="list-unstyled sub-menu">
-							<li><a href="#">Help List</a></li>
-							<li><a href="#">Create new Help</a></li>
-						</ul>
-					</li>
-					<li class=" current-page menu-item-has-children">
-						<a href="#"><i class="list-icon material-icons">add_shopping_cart</i><span class="hide-menu">Deposits</span></a>
-						<ul class="list-unstyled sub-menu">
-							<li class=""><a href="#">List of deposit</a></li>
-							<li class=""><a href="#">Create new deposit</a></li>
-						</ul>
-					</li>
-					<li class="current-page menu-item-has-children">
-						<a href="#"><i class="list-icon material-icons">local_library</i><span class="hide-menu">Education</span></a>
-						<ul class="list-unstyled sub-menu">
-							<li class=""><a href="#">Education List</a></li>
-							<li class=""><a href="#">Create new Education</a></li>
-						</ul>
-					</li>
-					<li class="current-page menu-item-has-children">
-						<a href="#"><i class="list-icon feather feather-command"></i><span class="hide-menu">KYC</span></a>
-						<ul class="list-unstyled sub-menu">
-							<li class=""><a href="#">KYC List</a></li>
-							<li class=""><a href="#">Create new KYC</a></li>
-						</ul>
-					</li>
-					<li class="current-page menu-item-has-children">
-						<a href="#"><i class="list-icon material-icons">translate</i><span class="hide-menu">Language</span></a>
-						<ul class="list-unstyled sub-menu">
-							<li class=""><a href="#">Language List</a></li>
-							<li class=""><a href="#">Create new Language</a></li>
-						</ul>
-					</li>
-					<li class="current-page menu-item-has-children">
-						<a href="#"><i class="list-icon material-icons">label</i><span class="hide-menu">Language Label</span></a>
-						<ul class="list-unstyled sub-menu">
-							<li class=""><a href="#">Language Label List</a></li>
-							<li class=""><a href="#">Create new Language Label</a></li>
-						</ul>
-					</li>
-				</ul>
-				<!-- /.side-menu -->
-			</nav>
-			<!-- /.sidebar-nav -->
-		</aside>
+                        <li class="nav_back"><a href="#">LIVE ACCOUNT</a></li>
+                        <li><a href="#">10008.5$</a></li>
+                    </ul>
+                    <div class="icon_header">
+                        <a href="#"><i class="fas fa-arrow-left"></i></a>
+                    </div>
 
-		<aside class="right-sideba">
+                </div>
 
-			<div class="sidebar-chat mt-4">
-				<div class="row">
-					<a href="#" class="m-auto w-100 btn font-weight-bold btn-danger">Open Real account</a>
-				</div>
-				<hr>
-				<div class="row">
-					<a href="#" class="m-auto w-100 btn font-weight-bold btn-outline-success">Add fund</a>
-				</div>
-				<hr>
-				<div class="row">
-					Balance : <span class="text-primary h1">10000 $</span>
-				</div>
-				<div class="row justify-content-around">
-					<button id="sell" class="btn btn-danger w-5/12 h3 text-center ">SELL</button>
-					<button id="buy" class="btn btn-success w-5/12 h3 text-center ">BUY</button>
-				</div>
-			</div>
-		</aside>
+                <!-- Modal -->
+                <div class="modal right fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">
+                                    <div class="demoClass">
+                                        <img src="/img/images.png" alt="">
+                                        <h2>Demo</h2>
+                                        <p>10008.5$</p>
+                                        <a href="#">LIVE ACCOUNT</a>
+                                    </div>
 
-		<main class="main-wrapper clearfix" style="margin-left: 1.75rem">
-			<div id="tv-chart" class="relative"></div>
-			<div class="floating floating-top">
-				<div class="floating-top-button"><span class="material-icons">attach_money</span>&nbsp;USD</div>
-				<div class="floating-top-button"><span class="material-icons">euro</span>&nbsp;EUR</div>
-				<div class="floating-top-button"><span class="material-icons">attach_money</span>&nbsp;USD</div>
-				<div class="floating-top-button"><span class="material-icons">attach_money</span>&nbsp;USD</div>
-			</div>
-			<div class="floating floating-bottom">
-				<div class="floating-button"><i class="material-icons">zoom_in</i></div>
-				<div class="floating-button"><i class="material-icons">zoom_out</i></div>
-				<div class="floating-button"><i class="material-icons">mode_standby</i></div>
-				<div class="floating-button"><i class="material-icons">area_chart</i></div>
-				<div class="floating-button"><i class="material-icons">stacked_line_chart</i></div>
-			</div>
-		</main>
+                                </h5>
+                            </div>
+                            <div class="modal-body">
 
-	</div>
+                                <ul class="navbar-nav ml-auto">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#"><i class="fas fa-luggage-cart header_icon"></i> Trade <span class="sr-only">(current)</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#"><i class="fas fa-luggage-cart header_icon"></i> Trade History</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#"><i class="fas fa-globe header_icon"></i> News</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#"><i class="far fa-question-circle header_icon"></i> Support</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#"><i class="fas fa-users-cog header_icon"></i> Setting</a>
+                                    </li>
 
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="chart-container">
+        <div id="chart" class="chart"></div>
+        <div class="right-sidebar pt-2">
+            <div class="row justify-content-center">
+                <div class="input-group col-sm-4 col-md-3">
+                    <div class="input-group-prepend">
+                        <div id="increase" class="input-group-text bg-dark text-white"><h3>+</h3></div>
+                    </div>
+                    <span id="result" class="form-control h-auto bg-dark text-white" > 0</span> 
+                    <div class="input-group-append">
+                        <div id="decrease" class="input-group-text bg-dark text-white"><h3>-</h3></div>
+                    </div>
+                </div>
+                <div class="col-sm-2 col-md-3 mt-2 amount">
+                    <span class="sell text-success">18 $</span>
+                    <span class="buy text-danger">18 $</span>
+                </div>
+                <div class="button col-sm-6 col-md-3 mt-2">
+                    <button class="btn btn-danger h3 text-center ">SELL</button>
+                    <button class="btn btn-success h3 text-center ">BUY</button>
+                </div>
+            </div>
+        </div>
+        <div class="chart-data-control-container">
+            <div class="dropdown">
+                <a class="btn dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="dropdown-item-container">
+                        <object data="/img/flag-usa.svg" type="image/svg+xml"></object>
+                        USD
+                    </span>
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item active" href="#">
+                        <span class="dropdown-item-container" data-id="usd">
+                            <object data="/img/flag-usa.svg" type="image/svg+xml"></object>
+                            USD
+                        </span>
+                    </a>
+                    <a class="dropdown-item" href="#">
+                        <span class="dropdown-item-container" data-id="euro">
+                            <object data="/img/flag-europe.svg" type="image/svg+xml"></object>
+                            EURO
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="chart-control-container">
+            <div class="chart-control-block">
+                <a href="#" id="move-chart-to-current-quote" class="chart-control" title="Move Chart To Current Quote">
+                    <i class="far fa-dot-circle"></i>
+                </a>
+            </div>
+            <div class="chart-control-block">
+                <a href="#" id="zoom-chart-in" class="chart-control" title="Increase Chart Scale">
+                    <i class="fas fa-plus-circle"></i>
+                </a>
+                <a href="#" id="zoom-chart-out" class="chart-control" title="Decrease Chart Scale" disabled>
+                    <i class="fas fa-minus-circle"></i>
+                </a>
+            </div>
+            <div class="chart-control-block">
+                <a href="#" id="toggle-multi-chart-series-line-area" class="chart-control active" title="Area Chart">
+                    <i class="fas fa-chart-area"></i>
+                </a>
+                <div class="btn-group dropright">
+                    <a
+                        class="dropdown-toggle chart-control"
+                        href="#"
+                        id="toggle-multi-chart-series-candlestick"
+                        role="button"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        title="Candles Chart">
+                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="410.916px" height="410.915px" viewBox="0 0 410.916 410.915" style="enable-background:new 0 0 410.916 410.915;" xml:space="preserve"><path d="M410.916,375.428v22.415H0V13.072h22.413v362.355H410.916z M89.193,315.652h11.208v-50.431h10.27V145.689h-10.27V93.393H89.193v52.296H78.917v119.533h10.277V315.652z M152.69,241.872h11.207v-51.365h10.276V70.971h-10.276V19.606H152.69v51.365h-10.27v119.536h10.27V241.872z M215.727,279.229h11.207v-49.488h10.271V110.194h-10.271V56.963h-11.207v53.231h-10.276V229.73h10.276V279.229z M287.169,300.243h11.21v-49.965h10.273V130.742h-10.273V77.976h-11.21v52.767h-10.269v119.536h10.269V300.243zM360.484,242.349h11.206v-51.833h10.271V70.971H371.69V20.077h-11.206v50.895h-10.276v119.536h10.276V242.349z"/></svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item active" href="#" data-interval="5">5s</a>
+                        <a class="dropdown-item" href="#" data-interval="10">10s</a>
+                        <a class="dropdown-item" href="#" data-interval="15">15s</a>
+                        <a class="dropdown-item" href="#" data-interval="30">30s</a>
+                        <a class="dropdown-item" href="#" data-interval="60">1m</a>
+                        <a class="dropdown-item" href="#" data-interval="120">2m</a>
+                        <a class="dropdown-item" href="#" data-interval="300">5m</a>
+                    </div>
+                </div>
+            </div>
+            <div class="chart-control-block">
+                <a href="#" class="chart-control" title="Bollinger Bands"><i class="fas fa-chart-line"></i></a>
+            </div>
+        </div>
+    </div>
+    <!-- JS here --> 
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap-native-v4.min.js"></script>
+
+    <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script> 
+    <script src="https://cdn.amcharts.com/lib/4/plugins/sunburst.js"></script> 
+    <script src="https://cdn.amcharts.com/lib/4/plugins/rangeSelector.js"></script>
+
+    <!-- Socket io CDN -->
+<script src="https://cdn.socket.io/4.1.1/socket.io.min.js" integrity="sha384-cdrFIqe3RasCMNE0jeFG9xJHog/tgOVC1E9Lzve8LQN1g5WUHo0Kvk1mawWjxX7a" crossorigin="anonymous"></script>
+
+    <script src="/js/main.js"></script>  
+
+    <script type="text/javascript">
     
-<!-- SOcket io CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.min.js" integrity="sha512-eVL5Lb9al9FzgR63gDs1MxcDS2wFu3loYAgjIH0+Hg38tCS8Ag62dwKyH+wzDb+QauDpEZjXbMn11blw8cbTJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+        // Grab element 
+        const increaseButton = document.querySelector("#increase");
+        const decreaseButton = document.querySelector("#decrease");
+        const result = document.querySelector("#result");
+        let temp = Number(result.textContent);
 
-	<script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js" defer></script>
-	
+        const increase = () => {
+            temp++;
+            result.textContent = temp;
+        }
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.2/umd/popper.min.js"></script>
-	<script src="/js/bootstrap.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/2.7.0/metisMenu.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.7.0/js/perfect-scrollbar.jquery.js"></script>
-	<!-- <script src="/js/theme.js"></script>
-	<script src="/js/custom.js"></script> -->
-    <script type="module" src="/js/main.js" defer></script>
+        const decrease = () => {
+            temp <= 0 ? temp = 0 : temp--;
+            result.textContent = temp;
+        }
+
+        increaseButton.addEventListener("click", increase);
+        decreaseButton.addEventListener("click", decrease);
+        
+        // GRAB HTML ELEMENT
+        const sellButton = document.querySelector('#sell');
+        const buyButton = document.querySelector('#buy');
+
+    </script>
 </body>
-
 </html>

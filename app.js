@@ -40,8 +40,6 @@ db.authenticate()
 //set template engine
 app.set('view engine', 'ejs');
 
-
-
 // Express body parser
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -101,30 +99,32 @@ const ccStreamer = new WebSocket('wss://streamer.cryptocompare.com/v2?api_key=' 
 io.on('connection', (socket) =>{
   console.log(`Connecté au client ${socket.id}`);
 
-  // ccStreamer.on('open', function open() {
-  //     var subRequest = {
-  //         "action": "SubAdd",
-  //         "subs": ["0~Binance~BTC~USDT"]
-  //     };
-  //     ccStreamer.send(JSON.stringify(subRequest));
-  // });
+  ccStreamer.on('open', function open() {
+      var subRequest = {
+          "action": "SubAdd",
+          "subs": ["0~Binance~BTC~USDT"]
+      };
+      ccStreamer.send(JSON.stringify(subRequest));
+  });
 
-  // ccStreamer.on('message', async function incoming(data) {
-  //   // console.log(data);
-  //   // const c = await axios.get(`https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,USD,XRP,LTC,NEO,ETH,TRX,OXT,EUR,XTZ,GBP,LINK,BCH,JST,LTC&tsyms=BTC,USD,XRP,LTC,NEO,ETH,TRX,OXT,EUR,XTZ,GBP,LINK,BCH,JST,LTC`);
+  ccStreamer.on('message', async function incoming(data) {
+    // console.log(data);
+    // const c = await axios.get(`https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,USD,XRP,LTC,NEO,ETH,TRX,OXT,EUR,XTZ,GBP,LINK,BCH,JST,LTC&tsyms=BTC,USD,XRP,LTC,NEO,ETH,TRX,OXT,EUR,XTZ,GBP,LINK,BCH,JST,LTC`);
+    let DATA = JSON.parse(data);
+    console.log(DATA);
 
-  //   const c = await axios.get('https://min-api.cryptocompare.com/data/generateAvg?fsym=BTC&tsym=USD&e=Kraken&api_key='+apiKey)
+    // const c = await axios.get('https://min-api.cryptocompare.com/data/generateAvg?fsym=BTC&tsym=USD&e=Kraken&api_key=' + apiKey)
+    // console.log(c.data);
 	
-  //   socket.emit('informations', JSON.parse(data))
-  // });
+    socket.emit('informations', DATA)
+  });
   
-  // io.listen('https://streamer.cryptocompare.com/'+api_key)
-  // io.of('').emit('SubAdd', { subs: subscription });
   // émission d'un évènement
   io.emit('news', 'Voici un nouvel élément envoyé par le serveur');
   
-  socket.on('sellAction', async () => {
-   
+  socket.on('sellAction', async (data) => {
+    console.log("I'm working");
+    
     
     let datas = {
     assetId: 1,
@@ -137,7 +137,7 @@ io.on('connection', (socket) =>{
     fsyms: 'BTC',
     tsyms: 'USD'
     }
-//mysql://ba88b94054095b:f5d4422c@us-cdbr-east-03.cleardb.com/heroku_99b69665e2d8917?reconnect=true
+    mysql://ba88b94054095b:f5d4422c@us-cdbr-east-03.cleardb.com/heroku_99b69665e2d8917?reconnect=true
      console.log("Sell action is working");
     let amount = user.OneUserInfos(datas.userId);
     amount = amount - datas.bid_price;
