@@ -9,7 +9,7 @@ function dateToString(date) {
 let DATA = {};
 
 //Socket io
-const socket = io.connect('http://127.0.0.1:4000/');
+const socket = io.connect('/');
 // écoute du socket news
 socket.on('informations', function(data){
     DATA = { date: data.RTS, open: data.P, low: data.P, high: data.P, close: data.P };

@@ -69,7 +69,7 @@ app.use(function(req, res, next) {
 });
 
 //CORS
-app.use(cors({ origin: '*', credentials: true }));
+app.use(cors({ origin: (origin, callback) => callback(null, true), credentials: true }));
 
 //static files
 app.use(express.static(path.join(__dirname, 'public')));
