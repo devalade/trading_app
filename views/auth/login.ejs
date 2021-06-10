@@ -157,10 +157,8 @@
         loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             // get values
-            console.log(loginForm)
             const user_email = loginForm.user_email.value;
             const user_password = loginForm.user_password.value;
-            console.log(user_email, user_password);
 
             try {
                 const res = await fetch('/api/app_login', { 
@@ -181,7 +179,7 @@
                 }
             }
             catch (err) {
-            console.log(err);
+                console.log(err);
             }
     });
 

@@ -4,7 +4,7 @@ const JwtStrategy = require('passport-jwt').Strategy,
     ExtractJwt = require('passport-jwt').ExtractJwt;
 
 // Load User model
-const User = require('../services/User');
+const UserServices = require('../services/User');
 // console.log(User)
 
 
@@ -16,7 +16,7 @@ module.exports = function (passport) {
   
   passport.use('jwt', new JwtStrategy(options, function (jwt_payload, done) {
     let user_email = jwt_payload.user_email
-    let user = User.getUserByEmail(user_email);
+    let user = UserServices.getUserByEmail(user_email);
     
     if (user) {
       return done(null, user);
@@ -27,25 +27,6 @@ module.exports = function (passport) {
   }));
   
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -6,30 +6,6 @@ function dateToString(date) {
     return paddingNumberWithZero(date.getHours(), 2) + ":" + paddingNumberWithZero(date.getMinutes(), 2) + ":" + paddingNumberWithZero(date.getSeconds(), 2);
 }
 
-let DATA = {};
-
-//Socket io
-const socket = io.connect('/');
-// écoute du socket news
-socket.on('informations', function(data){
-    DATA = { date: data.RTS, open: data.P, low: data.P, high: data.P, close: data.P };
-    console.log(DATA);
-});
-
-const sellAction = () => {
-    console.log("Insertion du bid price dans la base de donnees");
-    const datas = {
-        assetId: '1',
-        investement_amount: '200',
-        trade_type: 1
-    }
-    socket.emit('sellAction', {datas})
-
-}
-
-sellButton.addEventListener('click', sellAction);
-
-
 
 const ID_SERIES_LINE = "chart-series-line-area",
       ID_SERIES_CANDLESTICK = "chart-series-candlestick",
@@ -88,7 +64,14 @@ function generateData(isRenewLineSeriesData = true, isRenewCandlestickSeriesData
     }
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
+        //Socket io
+    const socket = io.connect('/');
+    // écoute du socket news
+    socket.on('informations', function(data){
+        DATA = { date: data.RTS, open: data.P, low: data.P, high: data.P, close: data.P };
+        console.log(DATA);
+    });
     am4core.ready(function() {
         var chart,
             xAxis, yAxis,
@@ -295,7 +278,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         generateData();
 
-        chart.data = SERIES_DATA[ID_SERIES_LINE];
+        chart.data = SERIES_DATA[ID_SERIES_LINE];``
 
         xAxis = chart.xAxes.push(new am4charts.DateAxis());
         xAxis.renderer.grid.template.location = 0.5;
@@ -555,7 +538,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     SERIES_DATA[ID_SERIES_LINE].push(newLineSeriesDataItem);
                     chart.invalidateRawData();
                 }
-            }, 3000);
+            }, 1000);
         }
 
         function startCandlestickSeriesDataTimer() {
@@ -681,7 +664,6 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         });
     }); // end am4core.ready()
-
-
-    
 });
+
+

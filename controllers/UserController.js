@@ -1,7 +1,6 @@
 const Joi = require('joi');
 const userService = require('../services/User');
 const passport = require('passport');
-const UserModels = require('../models/User');
 
 
 // const server = require('http').Server(app)

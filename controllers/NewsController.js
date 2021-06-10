@@ -28,7 +28,7 @@ const apiGetNewsById = (req, res, next) =>{
 
 const insertNews = (req, res, next) => {
     NewsService.insertNews(req.body)
-        .then(() => res.json('Insertion de news ...'))
+        .then(() => res.json({message: 'Insertion de news ...'}))
         .catch(next);
 }
 

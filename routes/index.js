@@ -34,13 +34,13 @@ const ApiRequestController = require('../controllers/ApiRequestController');
 
 
 // routes
-router.get('/login', forwardAuthenticated ,  (req, res) => {res.render('auth/login')});
+router.get('/login',  (req, res) => {res.render('auth/login')});
 // router.post('/login', login);
 // Login
 router.post('/login', UserController.login);
-router.post('/logout', ensureAuthenticated , UserController.logout);
-router.get('/register', forwardAuthenticated,UserController.getRegister);
-router.post('/register', forwardAuthenticated,UserController.register);
+router.post('/logout', UserController.logout);
+router.get('/register', UserController.getRegister);
+router.post('/register', UserController.register);
 // router.get('/', authorize(), getAll);
 // router.get('/current', authorize(), getCurrent);
 // router.get('/:id', authorize(), getById);
@@ -66,15 +66,16 @@ router.get('/get_education', EducationController.apiGetAllEducation );
 router.get('/get_faq', FaqController.apiGetAllFaq);
 router.get('/get_help', HelpController.apiGetAllHelp);
 router.get('/getLanguage_labels', LabelController.apiGetAllLabel);
-// router.get('/paytm_api')
-// router.get('/skrill_api_payment')
+
+// router.get('/paytm_api') // Implementer 
+// router.get('/skrill_api_payment') // Implementer
 router.get('/money_deposit_user')
 // router.get('/kyc_verification')
-// router.get('/profile_pic')
-// router.get('/withdraw_api')
+// router.get('/profile_pic') //Image de profile pas encore gerer
+// router.get('/withdraw_api') //
 router.get('/forgot_password', UserController.forgotPassword)
-// router.get('/change_security')
-// router.get('/change_user_auth')
+// router.get('/change_security') // Change password
+// router.get('/change_user_auth') // 
 router.get('/user_logout' ,UserController.logout)
 router.get('/update_profile', UserController.update)
         // router.get('/buy_sell'ensureAuthenticated, )
@@ -90,6 +91,9 @@ router.get('/get_payment_history')
 // router.get('/manage_user_settings')
 router.get('/get_user_data/:id', UserController.apiGetById);
 router.get('/get_deposit_hint_data/:id', DepositController.apiGetDepositById);
+
+
+
 
 // /********************** CRUD operation *************************/
 

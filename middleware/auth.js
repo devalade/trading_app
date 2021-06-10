@@ -2,6 +2,7 @@ const ROLE = {
     admin: 'admin',
     basic: 'basic'
 }
+
 module.exports = {
   ensureAuthenticated: function(req, res, next) {
     if (req.isAuthenticated()) {
@@ -10,6 +11,7 @@ module.exports = {
     req.flash('error_msg', 'Please log in to view that resource');
     res.redirect('/api/login');
   },
+
   forwardAuthenticated: function(req, res, next) {
     if (!req.isAuthenticated()) {
       return next();
@@ -18,7 +20,7 @@ module.exports = {
   },
 
   isAdmin: function(req, res, next) {
-    if (req.user.user_name == ROLE.admin) {
+    if (req.user.user_role == ROLE.admin) {
       return next();
     }
     //Page de non authorisation
